@@ -1,2 +1,54 @@
-<h1>Registrations#new</h1>
-<p>Find me in app/views/registrations/new.html.erb</p>
+<%= form_for(@registration) do |f| %>
+
+      <%= render 'shared/error_messages' %>
+<%= f.label :fname %>
+<%= f.text_field :fname %>
+
+<%= f.label :lname %>
+<%= f.text_field :lname %>
+
+<%= f.label :email %>
+<%= f.text_field :email %>
+
+<%= f.label :gender %>
+no answer:<%= f.radio_button :gender, 'no answer', checked: true %>
+male:<%= f.radio_button :gender, 'male' %>
+female:<%= f.radio_button :gender, 'female' %>
+
+<%= f.label :street %>
+<%= f.text_field :street %>
+
+<%= f.label :streetno %>
+<%= f.text_field :streetno %>
+
+<%= f.label :zip %>
+<%= f.text_field :zip %>
+
+<%= f.label :place %>
+<%= f.text_field :place %>
+
+<%= f.label :birthday %>
+<%= f.date_field :birthday %>
+
+<%= f.label :study %>
+<%= f.text_field :study %>
+
+<%= f.label :vegetarian %>
+<%= f.check_box :vegetarian %>
+
+<%= f.label :vegan %>
+<%= f.check_box :vegan %>
+
+<%= f.label :ticket %>
+<%= f.text_field :ticket %>
+
+<%= f.label :phone %>
+<%= f.phone_field :phone %>
+
+<%= f.label :comment %>
+<%= f.text_area :comment %>
+
+<%= f.submit %>
+
+<% end %>
+
