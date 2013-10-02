@@ -14,9 +14,11 @@ class CreateRegistrations < ActiveRecord::Migration
       t.boolean :vegetarian
       t.boolean :vegan
       t.string :ticket
+      t.string :phone
+      t.text :comment
 
       t.timestamps
     end
-    add_index :registrations, :email
+    add_index :registrations, :email, unique: true
   end
 end
