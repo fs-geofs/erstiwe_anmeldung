@@ -1,4 +1,4 @@
-class Registration  Mailer < ActionMailer::Base
+class RegistrationMailer < ActionMailer::Base
   default from: "fsgi@uni-muenster.de"
 
   def registration_complete_mail(registration)
