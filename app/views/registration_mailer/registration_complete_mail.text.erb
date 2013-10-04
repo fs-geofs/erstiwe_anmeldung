@@ -1,10 +1,10 @@
 Hallo <%= @registration.fname %>,
 
-Vielen Dank für die Vervollständigung deiner Daten für das Erstiwochenende <%= 'todo' %>.
-Das Erstiwochenende findet vom <%= 'todo' %> bis <%= 'todo' %> statt. Wir fahren wieder in das Tagungshaus Drübberholz (http://www.druebberholz.de/)
+Vielen Dank für die Vervollständigung deiner Daten für das Erstiwochenende <%= @begin.year %>.
+Das Erstiwochenende findet vom<%= l @begin, format: "%e. %B" %> bis<%= l @end, format: "%e. %B %Y" %> statt. Wir fahren wieder in das Tagungshaus Drübberholz (http://www.druebberholz.de/)
 
-  Hinfahrt: <%= 'todo' %> um 9:30 Uhr wahrscheinlich vom GEO1
-  Rückfahrt: <%= 'todo' %> um 13:00 Uhr aus Drübberholz
+  Hinfahrt:<%= l @begin, format: "%d. %B um %H:%M Uhr" %> wahrscheinlich vom GEO1
+  Rückfahrt:<%= l @end, format: "%d. %B um %H:%M Uhr" %> aus Drübberholz
 
 Bitte denkt daran am Freitag genügend Proviant für die Busfahrt mitzunehmen! Für die Rückfahrt werdet ihr die Möglichkeit haben euch extra Brote vom Frühstück zu schmieren und auch etwas Obst zu stibitzen.
 
@@ -19,17 +19,18 @@ Mitzubringen:
   * Kleingeld (für Bier, Cola, Saft, Wasser,…)
   * Regenkleidung (warm & trocken)
   * Schreibzeug
-  * 2. bis x. Paar Schuhe
+  * 2. bis n. Paar Schuhe
   * Gute Laune!
 
 Folgend noch einmal die von dir angegebenen Daten:
 <%= @registration.fname %> <%= @registration.lname %>
-<%= @registration.street %> <%= @registration.streetno %>, <%= @registration.place %>
-Geburtstag: <%= @registration.birthday %>
+<%= @registration.street %> <%= @registration.streetno %>, <%= @registration.zip %> <%= @registration.place %>
+Geburtstag: <%= @registration.birthday.strftime('%d.%m.%Y') %>
 Studiengang: <%= @registration.study %>
-Vegetarier: <%= @registration.vegetarian %>
-Veganer: <%= @registration.vegan %>
-Bemerkungen: <%= @registration.comment %>
+<% optional_detail(@registration.vegetarian, 'Vegetarier') 
+ optional_detail(@registration.vegan, 'Veganer')
+ optional_detail(@registration.comment, 'Bemerkungen') 
+ %>
 
 Wenn du noch Fragen hast, schreib uns ruhig eine E-Mail.
 
