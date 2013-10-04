@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
     if @registration.save
-      redirect_to @user
+      redirect_to @registration
     else
       render 'new'
     end
