@@ -4,6 +4,21 @@ class TicketsController < ApplicationController
   end
 
   def redeem
+    @ticket = Ticket.find_by ticket: ticket_redeem_params[:ticket]
+    if @ticket.email != nil
+      flash[:alert] = 'Ticket schon eingelöst'
+      render 'index'
+      return
+    end
+
+    @ticket.email = ticket_redeem_params[:email]
+    if @ticket.save
+      flash[:notice] = 'alles gut!'
+      render 'index'
+    else
+      flash[:alert] = 'Fehler'
+      render 'index'
+    end
   end
 
   def print
@@ -35,4 +50,8 @@ class TicketsController < ApplicationController
     def new_ticket(input)
       (0...16).map{ input[rand(input.length)] }.join
     end
+
+    def ticket_redeem_params
+      params.permit(:email, :ticket)
+    end 
 end

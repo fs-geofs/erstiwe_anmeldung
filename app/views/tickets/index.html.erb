@@ -2,7 +2,7 @@
 
 <%= form_tag action: 'redeem' do %>
 <%= label_tag "Ticket" %>
-<%= text_field_tag(:ticket) %>
+<%= text_field_tag(:ticket, params[:ticket]) %>
 <%= label_tag "E-Mail" %>
 <%= text_field_tag(:email) %>
 <%= submit_tag "Einlösen" %>
