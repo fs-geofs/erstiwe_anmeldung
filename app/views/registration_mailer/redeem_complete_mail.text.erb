@@ -1,0 +1,16 @@
+Hallo <%= @ticket.email %>,
+
+Du kannst dich jetzt mit deiner E-Mailadresse und dem Ticketcode auf
+
+<%= url_for(host: 'localhost:3000',
+            controller: 'tickets',
+            action: 'index',
+            only_path: false,
+            #protocol: 'https',
+            ticket: @ticket.ticket) %>
+
+anmelden. Dort musst du deine Anmeldung vervollständigen und deine restlichen Daten angeben.
+Hier nochmal dein Ticket-Code: <%= @ticket.ticket %>
+
+Viele Grüße,
+eure Fachschaft Geoinformatik und Fachschaft Geographie/Landschaftsökologie
