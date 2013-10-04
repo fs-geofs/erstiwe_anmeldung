@@ -1,6 +1,10 @@
 ErstiweAnmeldung::Application.routes.draw do
   resources :registrations
-  resources :tickets
+  resources :tickets do
+    collection do
+      get 'print'
+    end
+  end
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
