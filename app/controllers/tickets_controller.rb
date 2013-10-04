@@ -1,6 +1,9 @@
 class TicketsController < ApplicationController
 
   def index
+  end
+
+  def print
     @tickets = Ticket.all
   end
 
@@ -21,7 +24,7 @@ class TicketsController < ApplicationController
       end
     end
     @tickets = Ticket.all
-    render 'index'
+    render 'print'
   end
 
   private
