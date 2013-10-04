@@ -3,6 +3,9 @@ class TicketsController < ApplicationController
   def index
   end
 
+  def redeem
+  end
+
   def print
     @tickets = Ticket.all
   end

@@ -3,6 +3,7 @@ ErstiweAnmeldung::Application.routes.draw do
   resources :tickets do
     collection do
       get 'print'
+      post 'redeem'
     end
   end
   #get "registrations/new"
