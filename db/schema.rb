@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131004110955) do
+ActiveRecord::Schema.define(version: 20131004122531) do
 
   create_table "registrations", force: true do |t|
     t.string   "fname"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 20131004110955) do
     t.string   "ticket"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
+  add_index "tickets", ["email"], name: "index_tickets_on_email", unique: true
   add_index "tickets", ["ticket"], name: "index_tickets_on_ticket", unique: true
 
 end
