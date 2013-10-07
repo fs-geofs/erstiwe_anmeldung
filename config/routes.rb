@@ -1,5 +1,9 @@
 ErstiweAnmeldung::Application.routes.draw do
-  resources :registrations
+  resources :registrations do
+    collection do
+      get 'token/:token' => 'registrations#new', as: :token
+    end
+  end
   resources :tickets do
     collection do
       get 'print'
