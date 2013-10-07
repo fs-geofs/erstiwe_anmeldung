@@ -1,11 +1,13 @@
 class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
-      t.string :ticket
+      t.string :token
+      t.string :email
 
       t.timestamps
     end
 
-    add_index :tickets, :ticket, unique: true
+    add_index :tickets, :token, unique: true
+    add_index :tickets, :email, unique: true
   end
 end

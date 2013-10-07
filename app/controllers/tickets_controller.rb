@@ -1,10 +1,11 @@
 class TicketsController < ApplicationController
 
   def index
+    @ticket = Ticket.new
   end
 
   def redeem
-    @ticket = Ticket.find_by ticket: ticket_redeem_params[:ticket]
+    @ticket = Ticket.find_by! token: ticket_redeem_params[:token]
     if @ticket.email != nil
       flash[:alert] = 'Ticket schon eingelöst'
       render 'index'
@@ -29,29 +30,16 @@ class TicketsController < ApplicationController
   end
 
   def create
-    chars = ('A'..'Z').to_a
-    tickets = []
-    Ticket.transaction do
-      Ticket.destroy_all #delete all current tickets
-      70.times do #generate 70 tickets
-        ticket = new_ticket(chars)
-        while(tickets.include?(ticket)) #if ticket exists, generate a new one
-          ticket = new_ticket(chars)
-        end
-        Ticket.new(ticket: ticket).save
-      end
+    Ticket.destroy_all #delete all current tickets
+    70.times do #generate 70 tickets
+      Ticket.create
     end
-    @tickets = Ticket.all
-    render 'print'
+    redirect_to '/tickets/print'
   end
 
   private
 
-    def new_ticket(input)
-      (0...16).map{ input[rand(input.length)] }.join
-    end
-
     def ticket_redeem_params
-      params.permit(:email, :ticket)
+      params.require(:ticket).permit(:email, :token)
     end 
 end

@@ -1,9 +1,9 @@
 <h1>Ticket einlösen</h1>
-
-<%= form_tag action: 'redeem' do %>
-<%= label_tag "Ticket" %>
-<%= text_field_tag(:ticket, params[:ticket]) %>
-<%= label_tag "E-Mail" %>
-<%= text_field_tag(:email) %>
-<%= submit_tag "Einlösen" %>
+<%= render 'shared/error_messages', object: @ticket %>
+<%= form_for @ticket, url: {action: 'redeem' } do |f| %>
+<%= f.label :token, "Ticket" %>
+<%= f.text_field :token %>
+<%= f.label :email, "E-Mail" %>
+<%= f.text_field :email %>
+<%= f.submit "Einlösen" %>
 <% end %>
