@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20131007100144) do
   add_index "tickets", ["token"], name: "index_tickets_on_token", unique: true
 
   create_table "users", force: true do |t|
+    t.integer  "ticket_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
