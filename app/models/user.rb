@@ -8,11 +8,10 @@ class User < ActiveRecord::Base
   validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :token, :study, presence: true, if: :confirmed?
   validate :ticket_exits
 
-  after_update :registration_complete_message
+  after_update :registration_complete_message, if: :details_present?
 
   def registration_complete_message
-    binding.pry
-    RegistrationMailer.registration_complete_mail(self) if details_present?
+    RegistrationMailer.registration_complete_mail(self)
   end
 
   def ticket_exits

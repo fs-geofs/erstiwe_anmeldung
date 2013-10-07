@@ -4,7 +4,6 @@ class Devise::RegistrationsController < DeviseController
 
   # GET /resource/sign_up
   def new
-        binding.pry
     build_resource({})
     respond_with self.resource
   end
