@@ -1,6 +1,6 @@
 <h1>Ticket einlösen</h1>
 <%= render 'shared/error_messages', object: @ticket %>
-<%= form_for @ticket, url: {action: 'redeem' } do |f| %>
+<%= form_for @ticket, url: { action: 'redeem', controller: 'tickets' } do |f| %>
 <%= f.label :token, "Ticket" %>
 <%= f.text_field :token %>
 <%= f.label :email, "E-Mail" %>
