@@ -1,15 +1,12 @@
 ErstiweAnmeldung::Application.routes.draw do
-  resources :registrations do
-    collection do
-      get 'token/:token' => 'registrations#new', as: :token
-    end
-  end
-  resources :tickets do
-    collection do
-      get 'print'
-      post 'redeem'
-    end
-  end
+  root :to => 'landing_page#index'
+  devise_for :users
+
+  get 'tickets/print'
+  get 'tickets/generate' => 'tickets#confirm_generate'
+  post 'tickets/generate' => 'tickets#generate'
+  post 'tickets/redeem'
+
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
