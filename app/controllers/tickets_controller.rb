@@ -1,27 +1,5 @@
 class TicketsController < ApplicationController
 
-  def index
-    @ticket = Ticket.new
-  end
-
-  def redeem
-    @ticket = Ticket.find_by! token: ticket_redeem_params[:token]
-    if @ticket.email != nil
-      flash[:alert] = 'Ticket schon eingelöst'
-      render 'index'
-      return
-    end
-
-    @ticket.email = ticket_redeem_params[:email]
-    if @ticket.save
-      flash[:notice] = 'alles gut!'
-      render 'index'
-    else
-      flash[:alert] = 'Fehler'
-      render 'index'
-    end
-  end
-
   def print
     @tickets = Ticket.all
   end
