@@ -1,0 +1,10 @@
+<p>Hallo <%= @email %>!</p>
+
+<p>Du kannst deinen Account nun durch den folgenden Link aktivieren:</p>
+
+<p><%= link_to 'Account bestätigen', confirmation_url(@resource, :confirmation_token => @token) %></p>
+
+<p>Dort musst du deine Anmeldung vervollständigen und deine restlichen Daten angeben.</p>
+
+<p>Viele Grüße,<br />
+eure Fachschaft Geoinformatik und Fachschaft Geographie/Landschaftsökologie</p>

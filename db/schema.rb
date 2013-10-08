@@ -11,12 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131002075440) do
+ActiveRecord::Schema.define(version: 20131007100144) do
 
-  create_table "registrations", force: true do |t|
+  create_table "tickets", force: true do |t|
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["token"], name: "index_tickets_on_token", unique: true
+
+  create_table "users", force: true do |t|
+    t.integer  "ticket_id"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "fname"
     t.string   "lname"
-    t.string   "email"
     t.integer  "gender"
     t.string   "street"
     t.string   "streetno"
@@ -26,13 +43,14 @@ ActiveRecord::Schema.define(version: 20131002075440) do
     t.integer  "study"
     t.boolean  "vegetarian"
     t.boolean  "vegan"
-    t.string   "ticket"
     t.string   "phone"
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "registrations", ["email"], name: "index_registrations_on_email", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
