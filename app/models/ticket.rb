@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  has_one :user, dependent:  :destroy
   before_create :generate_token
 
   def generate_token

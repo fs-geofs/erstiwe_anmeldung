@@ -43,7 +43,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :study
       t.boolean :vegetarian
       t.boolean :vegan
-      t.string :token
+      # t.string :token
       t.string :phone
       t.text :comment
 
@@ -53,7 +53,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :email,                :unique => true
     add_index :users, :reset_password_token, :unique => true
     add_index :users, :confirmation_token,   :unique => true
-    add_index :users, :token,                :unique => true
+    # add_index :users, :token,                :unique => true
     # add_index :users, :unlock_token,         :unique => true
   end
 end
