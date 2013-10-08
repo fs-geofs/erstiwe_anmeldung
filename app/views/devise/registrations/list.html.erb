@@ -1,0 +1,6 @@
+<h1>Liste aller Anmeldungen</h1>
+<% @users.each do |user| %>
+  <% if user.details_present? and !user.admin? %>
+    <%= user.fname %>
+  <% end %>
+<% end %>
