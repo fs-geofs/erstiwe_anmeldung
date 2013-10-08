@@ -8,15 +8,16 @@ class User < ActiveRecord::Base
 
   before_validation :map_ticket
 
-  validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?
-  validates :ticket_id, presence: true, uniqueness: true
+  validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?, unless: :admin
+  validates :ticket_id, presence: true, uniqueness: true, unless: :admin
 
 
   after_update :registration_complete_message, if: :details_present?
 
 
+
   def map_ticket
-    self.ticket = Ticket.find_by(token: self.pre_token)
+    self.ticket ||= Ticket.find_by(token: self.pre_token) 
   end
 
   def registration_complete_message
