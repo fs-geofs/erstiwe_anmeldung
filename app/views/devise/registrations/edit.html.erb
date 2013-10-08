@@ -16,8 +16,43 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <div><%= f.label :fname %><br />
+  <%= f.text_field :fname, required: true %></div>
+
+  <div><%= f.label :lname %><br />
+  <%= f.text_field :lname, required: true %></div>
+
+  <div><%= f.label :gender %><br />
+  no answer:<%= f.radio_button :gender, '0', checked: true %>
+  male:<%= f.radio_button :gender, '1' %>
+  female:<%= f.radio_button :gender, '2' %></div>
+
+  <div><%= f.label :street %>,<%= f.label :streetno %><br />
+  <%= f.text_field :street, required: true %><%= f.text_field :streetno, size:3, required: true %></div>
+
+  <div><%= f.label :zip %>,<%= f.label :place %><br />
+  <%= f.number_field :zip, size:5, required: true %>-<%= f.text_field :place, required: true %></div>
+
+  <div><%= f.label :phone %><br />
+  <%= f.phone_field :phone %></div>
+
+  <div><%= f.label :birthday %><br />
+  <%= f.date_field :birthday, required: true %></div>
+
+  <div><%= f.label :study %><br />
+  <%= f.select :study, [['2-Fach Bachelor', 0], ['Landschaftsökologie', 1], ['Geographie', 2], ['Geoinformatik', 3]], required: true, prompt: true %></div>
+
+  <div><%= f.label :vegetarian %><br />
+  <%= f.check_box :vegetarian %></div>
+
+  <div><%= f.label :vegan %><br />
+  <%= f.check_box :vegan %></div>
+
+  <div><%= f.label :comment %><br />
+  <%= f.text_area :comment %></div>
+
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <%= f.password_field :current_password, required: true %></div>
 
   <div><%= f.submit "Update" %></div>
 <% end %>
