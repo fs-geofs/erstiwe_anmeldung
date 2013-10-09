@@ -31,7 +31,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-
     if current_user.admin?
       User.find(params[:user]).destroy
       redirect_to 'users/list'
@@ -47,5 +46,10 @@ class RegistrationsController < Devise::RegistrationsController
     def admin!
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end
+
+
+  def after_inactive_sign_up_path_for(resource)
+    new_user_session_path
+  end
 
 end

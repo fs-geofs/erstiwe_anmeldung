@@ -1,2 +1,6 @@
-<h1><%= link_to 'Ich habe ein Ticket und möchte es einlösen!!', new_user_registration_path %></h1>
-<%= link_to 'Einloggen', new_user_session_path %>
+<% if current_user %>
+  <%= link_to 'Meine Daten vervollständigen', edit_user_registration_path %>
+<% else %>
+  <h1><%= link_to 'Ich habe ein Ticket und möchte es einlösen!!', new_user_registration_path %></h1>
+  <%= link_to 'Einloggen', new_user_session_path %>
+<% end %>
