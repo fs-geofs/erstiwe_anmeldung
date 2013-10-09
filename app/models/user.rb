@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
 
   def map_ticket
-    self.ticket ||= Ticket.find_by(token: self.pre_token.upcase!) 
+    self.ticket ||= Ticket.find_by(token: self.pre_token.upcase) 
   end
 
   def details_present?
