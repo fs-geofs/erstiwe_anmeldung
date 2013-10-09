@@ -1,10 +1,8 @@
 ErstiweAnmeldung::Application.routes.draw do
   root :to => 'landing_page#index'
-  devise_for :users, :controllers => {:registrations => "registrations"}
-
-
+  devise_for :users, :controllers => {:registrations => "registrations"}, :path => ''
+  
   devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
     get "users/list", :to => "registrations#list"
   end
 
