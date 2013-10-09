@@ -12,20 +12,11 @@ class User < ActiveRecord::Base
   validates :ticket_id, presence: true, uniqueness: true, unless: :admin
 
 
-  after_update :registration_complete_message, if: :details_present?
-
-
-
   def map_ticket
-    self.ticket ||= Ticket.find_by(token: self.pre_token) 
-  end
-
-  def registration_complete_message
-    RegistrationMailer.registration_complete_mail(self)
+    self.ticket ||= Ticket.find_by(token: self.pre_token.upcase!) 
   end
 
   def details_present?
     self.fname.present? and self.lname.present? and self.streetno.present? and self.street.present? and self.zip.present? and self.place.present? and self.birthday.present? and self.ticket_id.present? and self.study.present?
   end
-
 end   

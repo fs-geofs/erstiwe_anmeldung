@@ -1,6 +1,44 @@
 <h1>Liste aller Anmeldungen</h1>
+<table id="erstis" border="1" style="width:100%;">
+<thead>
+<tr>
+  <th>Aktion</th>
+  <th>Nr.</th>
+  <th>Name</th>
+  <th>Vorname</th>
+  <th>E-Mail</th>
+  <th>Straße</th>
+  <th>Ort</th>
+  <th>Tel-Nr.</th>
+  <th>Geburtstag (Alter jetzt/Fahrt)</th>
+  <th>Studiengang</th>
+  <th>Vegetarier</th>
+  <th>Veganer</th>
+  <th>Bemerkungen</th>
+</tr>
+</thead>
+<tbody>
+<% i = 0 %>
 <% @users.each do |user| %>
   <% if user.details_present? and !user.admin? %>
-    <%= user.fname %>
+  <tr>
+    <td><%= button_to "X", registration_path(user, :user => user), :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
+    <td><%= i+=1 %></td>
+    <td><%= user.lname %></td>
+    <td><%= user.fname %></td>
+    <td><%= user.email %></td>
+    <td><%= user.street %> <%= user.streetno %></td>
+    <td><%= user.zip %> <%= user.place %></td>
+    <td><%= user.phone %></td>
+    <td><%= user.birthday %></td>
+    <td><%= user.study %></td>
+    <td><%= user.vegetarian %></td>
+    <td><%= user.vegan %></td>
+    <td><%= user.comment %></td>
+  </tr>
   <% end %>
 <% end %>
+</tbody>
+</table>
+</body>
+</html>
