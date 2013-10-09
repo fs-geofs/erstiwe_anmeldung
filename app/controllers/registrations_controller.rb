@@ -31,7 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    binding.pry
+
     if current_user.admin?
       User.find(params[:user]).destroy
       redirect_to 'users/list'
