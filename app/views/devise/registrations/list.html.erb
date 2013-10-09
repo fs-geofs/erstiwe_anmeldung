@@ -24,14 +24,8 @@
   <tr>
     <td><%= button_to "X", registration_path(user, :user => user), :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
     <td><%= i+=1 %></td>
-    <td <% case user.gender 
-      when 1 %> class="male" 
-    <% when 2 %> class="female" >
-    <% end%>><%= user.lname %></td>
-    <td <% case user.gender 
-      when 1 %> class="male" 
-    <% when 2 %> class="female" >
-    <% end%>><%= user.fname %></td>
+    <td<% gender_color user %>><%= user.lname %></td>
+    <td<% gender_color user %>><%= user.fname %></td>
     <td><%= user.email %></td>
     <td><%= user.street %> <%= user.streetno %></td>
     <td><%= user.zip %> <%= user.place %></td>
