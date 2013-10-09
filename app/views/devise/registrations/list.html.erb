@@ -24,21 +24,30 @@
   <tr>
     <td><%= button_to "X", registration_path(user, :user => user), :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
     <td><%= i+=1 %></td>
-    <td><%= user.lname %></td>
-    <td><%= user.fname %></td>
+    <td <% case user.gender 
+      when 1 %> class="male" 
+    <% when 2 %> class="female" >
+    <% end%>><%= user.lname %></td>
+    <td <% case user.gender 
+      when 1 %> class="male" 
+    <% when 2 %> class="female" >
+    <% end%>><%= user.fname %></td>
     <td><%= user.email %></td>
     <td><%= user.street %> <%= user.streetno %></td>
     <td><%= user.zip %> <%= user.place %></td>
     <td><%= user.phone %></td>
-    <td><%= user.birthday %></td>
-    <td><%= user.study %></td>
-    <td><%= user.vegetarian %></td>
-    <td><%= user.vegan %></td>
+    <td><%= user.birthday.strftime('%d.%m.%Y') %> (<%= age_at(user.birthday) %>/<%= age_at(user.birthday,Time.new(2013,11,1,9,30,0)) %>)</td>
+    <td><% case user.study 
+       when 0 %>2-Fach Bachelor
+      <% when 1 %>Landschaftsökologie 
+      <% when 2 %>Geographie
+      <% when 3 %>Geoinformatik 
+    <% end %></td>
+    <td><%= "X" unless user.vegetarian == false %></td>
+    <td><%= "X" unless user.vegan == false %></td>
     <td><%= user.comment %></td>
   </tr>
   <% end %>
 <% end %>
 </tbody>
 </table>
-</body>
-</html>

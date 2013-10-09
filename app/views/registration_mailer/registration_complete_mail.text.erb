@@ -26,7 +26,17 @@ Folgend noch einmal die von dir angegebenen Daten:
 <%= @registration.fname %> <%= @registration.lname %>
 <%= @registration.street %> <%= @registration.streetno %>, <%= @registration.zip %> <%= @registration.place %>
 Geburtstag: <%= @registration.birthday.strftime('%d.%m.%Y') %>
-Studiengang: <%= @registration.study %>
+<% binding.pry %>
+Studiengang: <% case @registration.study 
+ when 0 %>
+2-Fach Bachelor
+<% when 1 %>
+Landschaftsökologie 
+<% when 2 %>
+Geographie
+<% when 3 %>
+Geoinformatik 
+<% end %>
 <% optional_detail(@registration.vegetarian, 'Vegetarier') 
  optional_detail(@registration.vegan, 'Veganer')
  optional_detail(@registration.comment, 'Bemerkungen') 
