@@ -16,7 +16,7 @@
         <div id="user_login_box" style="float:right">
           <%= current_user.email %> <%= "(admin)" if current_user.admin? %> |
           <% if current_user.admin? %>
-            <%= link_to 'Liste der Anmeldungen', tickets_print_path %> |
+            <%= link_to 'Liste der Anmeldungen', users_list_path %> |
             <%= link_to 'Tickets ausdrucken', tickets_print_path %> |
           <% else %>
             <%= link_to 'My info', edit_user_registration_path %> |
