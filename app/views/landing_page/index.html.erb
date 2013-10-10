@@ -1,3 +1,7 @@
-
-<%= link_to "Ticket einlösen", new_user_registration_path %>
-<%= link_to "Einloggen", new_user_session_path %> um Daten zu ändern
+<% if current_user %>
+  <%= link_to 'Meine Daten vervollständigen', edit_user_registration_path %><br />
+  <%= link_to 'Ausloggen', destroy_user_session_path, method: :delete %>
+<% else %>
+  <h1><%= link_to 'Ich habe ein Ticket und möchte es einlösen!!', new_user_registration_path %></h1>
+  <%= link_to 'Einloggen', new_user_session_path %>
+<% end %>

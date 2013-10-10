@@ -4,6 +4,6 @@ class Ticket < ActiveRecord::Base
 
   def generate_token
     chars = ('A'..'Z').to_a
-    self.token = (0...16).map{ chars[rand(chars.length)] }.join
+    self.token = (0...6).map{ chars[rand(chars.length)] }.join
   end
 end
