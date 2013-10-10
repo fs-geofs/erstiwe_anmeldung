@@ -7,7 +7,6 @@ ErstiweAnmeldung::Application.routes.draw do
   end
 
   get 'tickets/print'
-  get 'tickets/generate' => 'tickets#confirm_generate'
   post 'tickets/generate' => 'tickets#generate'
 
   #get "registrations/new"

@@ -8,9 +8,6 @@ class TicketsController < ApplicationController
     @tickets = Ticket.all
   end
 
-  def confirm_generate
-  end
-
   def generate
     Ticket.destroy_all #delete all current tickets
     70.times do #generate 70 tickets
