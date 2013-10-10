@@ -22,7 +22,4 @@ class TicketsController < ApplicationController
       params.require(:ticket).permit(:email, :token)
     end
 
-    def current_user_admin?
-      current_user.admin?
-    end
 end
