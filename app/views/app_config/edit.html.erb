@@ -1,0 +1,30 @@
+<h1>Anmeldung konfigurieren</h1>
+<%= form_for(@config) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div><%= f.label :beginning %><br />
+<%= f.datetime_select :beginning %></div>
+
+<div><%= f.label :ending %><br />
+<%= f.datetime_select :ending %></div>
+
+<div><%= f.label :mail_adress %><br />
+<%= f.text_field :mail_adress %></div>
+
+<div><%= f.label :mail_server %><br />
+<%= f.text_field :mail_server %></div>
+
+<div><%= f.label :mail_user %><br />
+<%= f.text_field :mail_user %></div>
+
+<div><%= f.label :mail_password %><br />
+<%= f.text_field :mail_password %></div>
+
+<div><%= f.label :mail_port %><br />
+<%= f.text_field :mail_port %></div>
+
+<div><%= f.label :mail_auth %><br />
+<%= f.check_box :mail_auth %></div>
+
+<div><%= f.submit "Update" %></div>
+
+<% end %>
