@@ -33,4 +33,20 @@ class RegistrationMailer < Devise::Mailer
      content_type: "text/plain").deliver
   end
 
+  def registration_destroyed_mail(user)
+    @user = user
+    @config = AppConfig.first
+    mail(to: @config.mail_adress,
+     from:  @config.mail_adress,
+     delivery_method: :smtp,
+     delivery_method_options: {
+       address: @config.mail_server,
+       port: @config.mail_port,
+       user_name: @config.mail_user,
+       password: @config.mail_password,
+       enable_starttls_auto: true},
+     subject: "Anmeldung Erstiwochenende gelöscht - neues Ticket",
+     content_type: "text/plain").deliver
+  end
+
 end
