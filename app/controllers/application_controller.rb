@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :pre_token
     devise_parameter_sanitizer.for(:account_update) << [:fname, :lname, :gender, :street, :streetno, :zip, :place, :birthday, :study, :vegetarian, :vegan, :phone, :comment]
   end
+
+  def current_user_admin?
+    current_user.admin?
+  end  
 end
