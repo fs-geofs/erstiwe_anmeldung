@@ -12,7 +12,6 @@ class RegistrationMailer < Devise::Mailer
        user_name: @config.mail_user,
        password: @config.mail_password,
        enable_starttls_auto: true}})
-    binding.pry
     devise_mail(record, :confirmation_instructions, opts)
   end
 
