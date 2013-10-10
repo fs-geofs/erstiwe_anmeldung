@@ -14,7 +14,7 @@ ErstiweAnmeldung::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -27,14 +27,14 @@ ErstiweAnmeldung::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-# Load emailcredentials
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  address:              YAML.load_file("#{Rails.root}/config/email.credentials.yml")['address'],
-  port:                 YAML.load_file("#{Rails.root}/config/email.credentials.yml")['port'],
-  user_name:            YAML.load_file("#{Rails.root}/config/email.credentials.yml")['user_name'],
-  password:             YAML.load_file("#{Rails.root}/config/email.credentials.yml")['password'],
-  #authentication:       ,
-  enable_starttls_auto: true  }
+# # Load emailcredentials
+# config.action_mailer.delivery_method = :smtp
+# config.action_mailer.smtp_settings = {
+#   address:              YAML.load_file("#{Rails.root}/config/email.credentials.yml")['address'],
+#   port:                 YAML.load_file("#{Rails.root}/config/email.credentials.yml")['port'],
+#   user_name:            YAML.load_file("#{Rails.root}/config/email.credentials.yml")['user_name'],
+#   password:             YAML.load_file("#{Rails.root}/config/email.credentials.yml")['password'],
+#   #authentication:       ,
+#   enable_starttls_auto: true  }
   
 end

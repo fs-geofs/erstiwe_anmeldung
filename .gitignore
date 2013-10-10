@@ -17,3 +17,6 @@
 
 #Email credential file
 /config/email.credentials.yml
+
+#shitty DS_Store osx files
+.DS_Store
