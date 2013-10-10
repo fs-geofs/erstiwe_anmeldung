@@ -34,10 +34,12 @@ class RegistrationsController < Devise::RegistrationsController
     if current_user.admin?
       @user = User.find(params[:user])
       regenerate_token_for @user
+      RegistrationMailer.registration_destroyed_mail @user
       @user.destroy
       redirect_to users_list_path
     else
       regenerate_token_for resource
+      RegistrationMailer.registration_destroyed_mail @user
       resource.destroy
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
       set_flash_message :notice, :destroyed if is_navigational_format?
