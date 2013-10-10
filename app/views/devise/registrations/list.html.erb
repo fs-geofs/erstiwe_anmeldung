@@ -24,21 +24,16 @@
   <tr>
     <td><%= button_to "X", registration_path(user, :user => user), :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
     <td><%= i+=1 %></td>
-    <td<% gender_color user %>><%= user.lname %></td>
-    <td<% gender_color user %>><%= user.fname %></td>
+    <td<% gender_color user.gender %>><%= user.lname %></td>
+    <td<% gender_color user.gender %>><%= user.fname %></td>
     <td><%= user.email %></td>
     <td><%= user.street %> <%= user.streetno %></td>
     <td><%= user.zip %> <%= user.place %></td>
     <td><%= user.phone %></td>
     <td><%= user.birthday.strftime('%d.%m.%Y') %> (<%= age_at(user.birthday) %>/<%= age_at(user.birthday,Time.new(2013,11,1,9,30,0)) %>)</td>
-    <td><% case user.study 
-       when 0 %>2-Fach Bachelor
-      <% when 1 %>Landschaftsökologie 
-      <% when 2 %>Geographie
-      <% when 3 %>Geoinformatik 
-    <% end %></td>
-    <td><%= "X" unless user.vegetarian == false %></td>
-    <td><%= "X" unless user.vegan == false %></td>
+    <td <% study_color user.study %>><% str_study user.study%></td>
+    <td<% attention_color if user.vegetarian %>><% yes_no_helper user.vegetarian %></td>
+    <td<% attention_color if user.vegan %>><% yes_no_helper user.vegan %></td>
     <td><%= user.comment %></td>
   </tr>
   <% end %>
