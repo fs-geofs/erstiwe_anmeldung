@@ -1,9 +1,12 @@
 ErstiweAnmeldung::Application.routes.draw do
   root :to => 'landing_page#index'
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}, :path => ''
+  
+  devise_scope :user do
+    get "users/list", :to => "registrations#list"
+  end
 
   get 'tickets/print'
-  get 'tickets/generate' => 'tickets#confirm_generate'
   post 'tickets/generate' => 'tickets#generate'
 
   #get "registrations/new"

@@ -3,8 +3,8 @@ Hallo <%= @registration.fname %>,
 Vielen Dank für die Vervollständigung deiner Daten für das Erstiwochenende <%= @begin.year %>.
 Das Erstiwochenende findet vom<%= l @begin, format: "%e. %B" %> bis<%= l @end, format: "%e. %B %Y" %> statt. Wir fahren wieder in das Tagungshaus Drübberholz (http://www.druebberholz.de/)
 
-  Hinfahrt:<%= l @begin, format: "%d. %B um %H:%M Uhr" %> wahrscheinlich vom GEO1
-  Rückfahrt:<%= l @end, format: "%d. %B um %H:%M Uhr" %> aus Drübberholz
+  Hinfahrt: <%= l @begin, format: "%d. %B um %H:%M Uhr" %> wahrscheinlich vom GEO1
+  Rückfahrt: <%= l @end, format: "%d. %B um %H:%M Uhr" %> aus Drübberholz
 
 Bitte denkt daran am Freitag genügend Proviant für die Busfahrt mitzunehmen! Für die Rückfahrt werdet ihr die Möglichkeit haben euch extra Brote vom Frühstück zu schmieren und auch etwas Obst zu stibitzen.
 
@@ -26,7 +26,16 @@ Folgend noch einmal die von dir angegebenen Daten:
 <%= @registration.fname %> <%= @registration.lname %>
 <%= @registration.street %> <%= @registration.streetno %>, <%= @registration.zip %> <%= @registration.place %>
 Geburtstag: <%= @registration.birthday.strftime('%d.%m.%Y') %>
-Studiengang: <%= @registration.study %>
+Studiengang: <% case @registration.study 
+ when 0 %>
+2-Fach Bachelor
+<% when 1 %>
+Landschaftsökologie 
+<% when 2 %>
+Geographie
+<% when 3 %>
+Geoinformatik 
+<% end %>
 <% optional_detail(@registration.vegetarian, 'Vegetarier') 
  optional_detail(@registration.vegan, 'Veganer')
  optional_detail(@registration.comment, 'Bemerkungen') 
