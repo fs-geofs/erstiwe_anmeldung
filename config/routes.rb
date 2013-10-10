@@ -9,6 +9,9 @@ ErstiweAnmeldung::Application.routes.draw do
   get 'tickets/print'
   post 'tickets/generate' => 'tickets#generate'
 
+  get "app_config/edit"
+  post "app_config"
+
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
