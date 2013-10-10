@@ -14,13 +14,14 @@
 ActiveRecord::Schema.define(version: 20131010082732) do
 
   create_table "app_configs", force: true do |t|
-    t.datetime "beginning"
-    t.datetime "ending"
-    t.string   "mail_server"
-    t.string   "mail_user"
-    t.string   "mail_password"
-    t.integer  "mail_port"
-    t.boolean  "mail_auth"
+    t.datetime "beginning",                     null: false
+    t.datetime "ending",                        null: false
+    t.string   "mail_adress",   default: "",    null: false
+    t.string   "mail_server",   default: "",    null: false
+    t.string   "mail_user",     default: "",    null: false
+    t.string   "mail_password", default: "",    null: false
+    t.integer  "mail_port",     default: 25,    null: false
+    t.boolean  "mail_auth",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -11,12 +11,4 @@ class RegistrationMailer < ActionMailer::Base
      content_type: "text/plain").deliver
   end
 
-  def redeem_complete_mail(ticket)
-    @ticket = ticket
-    @begin = Time.new(2013,11,1,9,30,0)
-    mail(to: @ticket.email,
-     subject: "Anmeldung Erstiwochenende #{@begin.year}",
-     content_type: "text/plain").deliver
-  end
-
 end
