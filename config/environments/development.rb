@@ -26,15 +26,5 @@ ErstiweAnmeldung::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
-# # Load emailcredentials
-# config.action_mailer.delivery_method = :smtp
-# config.action_mailer.smtp_settings = {
-#   address:              YAML.load_file("#{Rails.root}/config/email.credentials.yml")['address'],
-#   port:                 YAML.load_file("#{Rails.root}/config/email.credentials.yml")['port'],
-#   user_name:            YAML.load_file("#{Rails.root}/config/email.credentials.yml")['user_name'],
-#   password:             YAML.load_file("#{Rails.root}/config/email.credentials.yml")['password'],
-#   #authentication:       ,
-#   enable_starttls_auto: true  }
   
 end
