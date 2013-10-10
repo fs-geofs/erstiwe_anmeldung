@@ -32,9 +32,14 @@ class RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     if current_user.admin?
-      User.find(params[:user]).destroy
-      redirect_to 'users/list'
+      @user = User.find(params[:user])
+      regenerate_token_for @user
+      RegistrationMailer.registration_destroyed_mail @user
+      @user.destroy
+      redirect_to users_list_path
     else
+      regenerate_token_for resource
+      RegistrationMailer.registration_destroyed_mail @user
       resource.destroy
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
       set_flash_message :notice, :destroyed if is_navigational_format?
@@ -47,9 +52,14 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end
 
+    def after_inactive_sign_up_path_for(resource)
+      new_user_session_path
+    end
 
-  def after_inactive_sign_up_path_for(resource)
-    new_user_session_path
-  end
+    def regenerate_token_for user
+      t = user.ticket
+      t.generate_token
+      t.save
+    end
 
 end
