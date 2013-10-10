@@ -1,6 +1,7 @@
 <h1>alle Tickets</h1>
+<%= render 'generate_form' %>
 <% @tickets.each do |ticket| %>
 <ul>
-<li><%= ticket.token %></li>
+<li><%= ticket.token %><%= " vergeben" if User.find_by ticket_id: ticket.id %></li>
 </ul>
 <% end %>
