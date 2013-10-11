@@ -1,4 +1,5 @@
 <h2>Anmeldung vervollständigen</h2>
+<%= link_to "E-Mail oder Passwort ändern", edit_credentials_path %>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
