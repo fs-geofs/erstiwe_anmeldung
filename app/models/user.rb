@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
 
 
   def map_ticket
-    self.ticket ||= Ticket.find_by(token: self.pre_token.upcase) 
+    if self.admin == false
+      self.ticket ||= ticket.find_by(token: self.pre_token.upcase)
+    end
   end
 
   def details_present?
