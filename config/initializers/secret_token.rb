@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ErstiweAnmeldung::Application.config.secret_key_base = '4c21c21771e0f45da21f3cb5069965f13e779d28e728294cbc6378c3b35ab57a3fee6e8178d418c0ab6bfb19f5d4906fe605cfb819ef6300f92976587649cd7e'
+ErstiweAnmeldung::Application.config.secret_key_base = ENV['RAILS_SESSION_SECRET']
