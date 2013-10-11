@@ -1,8 +1,8 @@
 class CreateAppConfigs < ActiveRecord::Migration
   def change
     create_table :app_configs do |t|
-      t.datetime :beginning, :null => false, :default => 0
-      t.datetime :ending, :null => false, :default => 1
+      t.datetime :beginning, :null => false, :default => "now()"
+      t.datetime :ending, :null => false, :default => "now()"
       t.string :mail_adress, :null => false, :default => ""
       t.string :mail_server, :null => false, :default => ""
       t.string :mail_user, :null => false, :default => ""
