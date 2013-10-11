@@ -17,3 +17,5 @@
 
 #shitty DS_Store osx files
 .DS_Store
+
+/config/database.yml
