@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy]
+  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list]
   before_filter :admin!, :only => :list
 
   def update
@@ -39,10 +39,9 @@ class RegistrationsController < Devise::RegistrationsController
     resource = current_user
   end
 
-  def
-
   def list
     @users = User.all
+    binding.pry
   end
 
   # DELETE /resource
