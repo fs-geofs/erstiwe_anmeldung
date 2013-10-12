@@ -41,7 +41,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def list
     @users = User.all
-    binding.pry
   end
 
   # DELETE /resource
