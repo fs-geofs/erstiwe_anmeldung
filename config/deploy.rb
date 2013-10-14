@@ -2,6 +2,7 @@ set :application, 'erstiwe_anmeldung'
 set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
 
 set :branch, 'master'
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/var/www/erstiwe_anmeldung'
 # set :scm, :git
@@ -13,7 +14,7 @@ set :deploy_to, '/var/www/erstiwe_anmeldung'
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+ set :default_env, { path: "/home/deploy/.rbenv/shims:$PATH" }
 # set :keep_releases, 5
 
 namespace :deploy do

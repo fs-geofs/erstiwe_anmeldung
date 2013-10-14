@@ -1,5 +1,8 @@
 set :stage, :production
 
+SSHKit.config.command_map[:rake]  = "RAILS_ENV=production bundle exec rake"
+SSHKit.config.command_map[:rails] = "bundle exec rails"
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
