@@ -1,0 +1,30 @@
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Einloggen
+
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = devise_error_messages!
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :email
+      = f.email_field :email, autofocus: true
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :password
+      = f.password_field :password
+
+  - if devise_mapping.rememberable? 
+    %div{class:"row"}
+      %div{class:"large-6 columns"}
+        = f.check_box :remember_me
+      %div{class:"large-6 columns"}
+        = f.label :remember_me
+
+  %div{class:"row"}
+    %div{class:"small-6 large-centered columns"}
+      = f.submit "Einloggen", class: "button expand radius success"
+
+
+= render "devise/shared/links"

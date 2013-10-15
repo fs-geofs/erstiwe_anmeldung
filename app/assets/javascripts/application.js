@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require_tree .
+//= require custom.modernizr
+//= require foundation
+//= require foundation.abide
+//= require foundation.alerts
+//= require foundation.placeholder
+//= require foundation.reveal
+//= require foundation.tooltips
+//= require foundation.forms
