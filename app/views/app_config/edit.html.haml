@@ -2,18 +2,28 @@
   %div{class:"small-9 large-centered columns"}
     %h2 Allgemeine Konfiguration
 
-= form_for(@config) do |f|
+= form_for(@config, html:{class:"custom"}) do |f|
   = render 'shared/error_messages', object: f.object
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :beginning, 'Beginn des Erstiwochenendes (mit Abfahrt)'
-      = f.datetime_select :beginning
+    %div{class:"small-6 columns"}
+      = f.text_field :beginning_date
+    %div{class:"small-3 columns"}
+      #{f.select :beginning_hour, (0..23)}
+    %div{class:"small-3 columns"}
+      = f.select :beginning_min, [0,15,30,45]
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :ending, 'Ende des Erstiwochenendes (Abfahrt in Drübberholz)'
-      = f.datetime_select :ending
+    %div{class:"small-6 columns"}
+      = f.text_field :ending_date
+    %div{class:"small-3 columns"}
+      #{f.select :ending_hour, (0..23)}
+    %div{class:"small-3 columns"}
+      = f.select :ending_min, [0,15,30,45]
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
@@ -43,3 +53,8 @@
   %div{class:"row"}
     %div{class:"small-6 large-centered columns"}
       = f.submit "Speichern", class: "button expand radius success"
+
+:javascript
+  $('#app_config_beginning_date').fdatepicker({format:'yyyy-mm-dd'});
+  $('#app_config_ending_date').fdatepicker({format:'yyyy-mm-dd'});
+

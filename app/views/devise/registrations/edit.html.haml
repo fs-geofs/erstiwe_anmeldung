@@ -74,7 +74,7 @@
   %div{class:"row"}
     %div{class:"large-6 columns"}
       = f.label :birthday, 'Geburtstag'
-      = f.date_field :birthday, required: true, class:"datepicker"
+      = f.text_field :birthday, required: true
     %div{class:"large-6 columns"}
       = f.label :phone, 'Telefon-Nummer'
       = f.phone_field :phone
@@ -129,5 +129,5 @@
   %a{class:"close-reveal-modal"} &#215;
 
 :javascript
-  $('.datepicker').fdatepicker();
+  $('#user_birthday').fdatepicker({format:'yyyy-mm-dd'});
 

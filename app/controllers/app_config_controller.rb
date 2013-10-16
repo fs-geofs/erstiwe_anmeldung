@@ -30,6 +30,6 @@ class AppConfigController < ApplicationController
 
   private
   def config_params
-    params.require(:app_config).permit(:beginning, :ending, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth)
+    params.require(:app_config).permit(:beginning_date, :beginning_hour, :beginning_min, :ending_date, :ending_hour, :ending_min, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth)
   end
 end

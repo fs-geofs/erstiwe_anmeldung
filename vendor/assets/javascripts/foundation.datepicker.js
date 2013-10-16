@@ -806,12 +806,12 @@
   $.fn.fdatepicker.Constructor = Datepicker;
   var dates = $.fn.fdatepicker.dates = {
     en: {
-      days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-      months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      today: "Today"
+      days: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+      daysShort: ["Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam", "Son"],
+      daysMin: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+      months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+      monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+      today: "Heute"
     }
   };
 
@@ -965,9 +965,9 @@
     },
     headTemplate: '<thead>'+
               '<tr>'+
-                '<th class="prev"><i class="icon-chevron-left"/></th>'+
+                '<th class="prev">&lt;</th>'+
                 '<th colspan="5" class="date-switch"></th>'+
-                '<th class="next"><i class="icon-chevron-right"/></th>'+
+                '<th class="next">&gt;</th>'+
               '</tr>'+
             '</thead>',
     contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
