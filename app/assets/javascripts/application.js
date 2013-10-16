@@ -21,3 +21,4 @@
 //= require foundation.reveal
 //= require foundation.tooltips
 //= require foundation.forms
+//= require foundation.datepicker

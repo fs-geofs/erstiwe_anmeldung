@@ -12,5 +12,6 @@
  *= require foundation
  *= require landing_page
  *= require registrations
- *= require self 
+ *= require tickets
+ *= require_self 
  */

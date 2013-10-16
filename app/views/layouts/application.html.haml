@@ -9,7 +9,7 @@
   -# meta http-equiv="X-UA-Compatible" content="IE=7"
   
   -# Set the viewport width to device width for mobile
-  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0, user-scalable=false;" }
 
   %title= content_for?(:title) ? yield(:title) : "ErstiweAnmeldung"
 
@@ -24,6 +24,8 @@
 %body
   - flash.each do |name, msg|
     - if msg.is_a?(String)
+      :javascript
+        setTimeout(function() { $('a.close').trigger('click'); }, 3000);
       %div{class:"row"}
         %div{class:"large-12 columns"}
           %div{ data: {alert: true}, class: "alert-box #{name} radius", id: "flash_#{name}" }
@@ -49,9 +51,13 @@
           %li
             = link_to 'Ausloggen', destroy_user_session_path, method: :delete
 
-
   %div{style:'clear:both;'}
-  = yield
+  - if !content_for?(:override_width)
+    %div{class:"row"}
+      %div{class:"small-12 columns"}
+        = yield
+  - else
+    = yield
 
   :javascript
     $(document).foundation();

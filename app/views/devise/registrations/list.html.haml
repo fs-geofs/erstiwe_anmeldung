@@ -1,0 +1,54 @@
+- content_for(:override_width, true)
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Liste aller Anmeldungen
+
+
+%table{style:"width:100%;!important"}
+  %thead
+    %tr
+      %th Aktion
+      %th Nr.
+      %th Name
+      %th Vorname
+      %th E-Mail
+      %th Straße
+      %th Ort
+      %th Tel-Nr.
+      %th Geburtstag (Alter jetzt/Fahrt)
+      %th Studiengang
+      %th Vegetarier
+      %th Veganer
+      %th Bemerkungen
+  %tbody
+    - i = 0
+    - @users.each do |user|
+      - if user.details_present? and !user.admin?
+        %tr
+          %td
+            = button_to "X", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+          %td
+            = i+=1
+          %td{class: gender_color(user.gender)}
+            = user.lname
+          %td{class: gender_color(user.gender)}
+            = user.fname
+          %td
+            = user.email
+          %td
+            = user.street
+          %td
+            = user.zip
+          %td
+            = user.phone
+          %td
+            = user.birthday.strftime('%d.%m.%Y')
+            (#{age_at(user.birthday)}, #{age_at(user.birthday,AppConfig.first.beginning)})
+          %td{class: study_color(user.study)}
+            - str_study user.study
+          %td{class: attention_color(user.vegetarian)}
+            - yes_no_helper user.vegetarian
+          %td{class: attention_color(user.vegan)}
+            - yes_no_helper user.vegan
+          %td
+            = user.comment

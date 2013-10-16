@@ -1,0 +1,45 @@
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Allgemeine Konfiguration
+
+= form_for(@config) do |f|
+  = render 'shared/error_messages', object: f.object
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :beginning, 'Beginn des Erstiwochenendes (mit Abfahrt)'
+      = f.datetime_select :beginning
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :ending, 'Ende des Erstiwochenendes (Abfahrt in Drübberholz)'
+      = f.datetime_select :ending
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :mail_adress, 'Von dieser Adresse werden die E-Mails verschickt'
+      = f.text_field :mail_adress
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :mail_server, 'SMTP-Server'
+      = f.text_field :mail_server
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :mail_user, 'User für Mail-Server'
+      = f.text_field :mail_user
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :mail_password, 'Passwort Mail-Server (leer lassen wenn nicht geändert werden soll)'
+      = f.password_field :mail_password
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :mail_port, 'Mail Port'
+      = f.text_field :mail_port
+
+  %div{class:"row"}
+    %div{class:"small-6 large-centered columns"}
+      = f.submit "Speichern", class: "button expand radius success"

@@ -3,27 +3,27 @@
     %h2 Einloggen
 
 
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), html:{class:"custom"}) do |f|
   = devise_error_messages!
   %div{class:"row"}
     %div{class:"large-12 columns"}
-      = f.label :email
+      = f.label :email, 'E-Mail'
       = f.email_field :email, autofocus: true
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
-      = f.label :password
+      = f.label :password, 'Passwort'
       = f.password_field :password
 
   - if devise_mapping.rememberable? 
     %div{class:"row"}
-      %div{class:"large-6 columns"}
-        = f.check_box :remember_me
-      %div{class:"large-6 columns"}
-        = f.label :remember_me
+      %div{class:"large-12 columns"}
+        = f.label :remember_me do
+          = f.check_box :remember_me
+          an Login erinnern
 
   %div{class:"row"}
-    %div{class:"small-6 large-centered columns"}
+    %div{class:"small-6 small-centered columns"}
       = f.submit "Einloggen", class: "button expand radius success"
 
 

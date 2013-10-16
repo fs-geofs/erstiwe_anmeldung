@@ -1,0 +1,18 @@
+
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Tickets
+
+= render 'generate_form'
+- taken_tickets = []
+- @tickets.in_groups_of(2, false).each do |tickets|
+  %div{class:"row"}
+    - tickets.each do |ticket|
+      %div{class:"small-6 columns text-center"}
+        - if User.find_by ticket_id: ticket.id
+          %pre{class:"taken"}
+            Schon eingelöst – #{ticket.token}
+        - else
+          %pre
+            #{ticket.token} – Einlösen auf http://erstiwochenende.uni-muenster.de
+  %br

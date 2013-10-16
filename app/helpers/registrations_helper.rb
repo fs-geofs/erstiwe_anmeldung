@@ -8,9 +8,9 @@ module RegistrationsHelper
   def gender_color gender
     case gender
       when 1
-        safe_concat ' class="male"'
+        "male"
       when 2
-        safe_concat ' class="female"'
+        "female"
     end
   end
 
@@ -30,13 +30,13 @@ module RegistrationsHelper
   def study_color study
     case study
       when 0
-        safe_concat ' class="zfgeo"'
+        "zfgeo"
       when 1
-        safe_concat ' class="loek"'
+        "loek"
       when 2
-        safe_concat ' class="geo"'
+        "geo"
       when 3
-        safe_concat ' class="gi"'
+        "gi"
     end
   end
 
@@ -49,7 +49,10 @@ module RegistrationsHelper
     end
   end
 
-  def attention_color
-    safe_concat ' class="attention"'
+  def attention_color for_what
+    case for_what
+      when true
+        "attention"
+    end
   end
 end

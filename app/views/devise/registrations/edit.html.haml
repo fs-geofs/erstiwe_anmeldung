@@ -74,7 +74,7 @@
   %div{class:"row"}
     %div{class:"large-6 columns"}
       = f.label :birthday, 'Geburtstag'
-      = f.date_field :birthday, required: true
+      = f.date_field :birthday, required: true, class:"datepicker"
     %div{class:"large-6 columns"}
       = f.label :phone, 'Telefon-Nummer'
       = f.phone_field :phone
@@ -128,4 +128,6 @@
     = button_to "Anmeldung löschen", registration_path(resource_name), :method => :delete, class: "button radius small alert"
   %a{class:"close-reveal-modal"} &#215;
 
+:javascript
+  $('.datepicker').fdatepicker();
 
