@@ -13,11 +13,16 @@ class AppConfigController < ApplicationController
 
   def update
     @config = AppConfig.first
-    if @config.update_attributes(config_params)
+    app_config_params = config_params
+    if app_config_params[:mail_password].empty?
+      app_config_params.delete(:mail_password)
+    end
+
+    if @config.update_attributes(app_config_params)
       flash[:success] = "Konfiguration gespeichert"
       redirect_to app_config_path
     else
-      @config.update_attributes(config_params)
+      @config.update_attributes(app_config_params)
       render 'edit'
     end
   end
