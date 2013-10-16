@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
     70.times do #generate 70 tickets
       Ticket.create
     end
+    flash[:notice] = 'Neue Tickets generiert'
     redirect_to '/tickets/print'
   end
 

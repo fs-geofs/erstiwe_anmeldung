@@ -1,29 +1,36 @@
 %div{class:"row"}
   %div{class:"small-9 large-centered columns"}
     %h2 Ticket einlösen
-
+- #binding.pry
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html:{class:"custom"}) do |f|
-  = devise_error_messages!
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :pre_token, 'Ticket-Code'
-      = f.text_field :pre_token, autofocus: true
+      = f.text_field :pre_token, autofocus: true, class:("error" if resource.errors.messages[:ticket_id].any?)
+      - if resource.errors.messages[:ticket_id].any?
+        %span{class:"error"} Ticket-Code ungültig
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :email
-      = f.email_field :email
+      = f.email_field :email, class:("error" if resource.errors.messages[:email].any?)
+      - if resource.errors.messages[:email].any?
+        %span{class:"error"} #{resource.errors.messages[:email][0]}
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :password
-      = f.password_field :password
+      = f.password_field :password, class:("error" if resource.errors.messages[:password].any?)
+      - if resource.errors.messages[:password].any?
+        %span{class:"error"} #{resource.errors.messages[:password][0]}
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       = f.label :password_confirmation
-      = f.password_field :password_confirmation
+      = f.password_field :password_confirmation, class:("error" if resource.errors.messages[:password_confirmation].any?)
+      - if resource.errors.messages[:password_confirmation].any?
+        %span{class:"error"} #{resource.errors.messages[:password_confirmation][0]}      
 
   %div{class:"row"}
     %div{class:"small-6 large-centered columns"}
