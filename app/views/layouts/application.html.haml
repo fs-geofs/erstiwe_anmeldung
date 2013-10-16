@@ -14,10 +14,10 @@
   %title= content_for?(:title) ? yield(:title) : "ErstiweAnmeldung"
 
   -# Included CSS Files
-  = stylesheet_link_tag "application", media: "all"#, "data-turbolinks-track" => true
+  = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 
   -# Included JS Files
-  = javascript_include_tag "application"#, "data-turbolinks-track" => true
+  = javascript_include_tag "application", "data-turbolinks-track" => true
 
   = csrf_meta_tag
 
@@ -52,10 +52,6 @@
 
   %div{style:'clear:both;'}
   = yield
-
-  :javascript 
-    document.write( '<script src=' + ( '__proto__' in {} ? '#{asset_path('zepto.js')}' : '#{asset_path('jquery.js')}' ) + '><\/script>' )
-
 
   :javascript
     $(document).foundation();
