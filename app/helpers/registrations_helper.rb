@@ -55,4 +55,19 @@ module RegistrationsHelper
         "attention"
     end
   end
+
+  def error_class_for_resource(attr)
+    "error" if resource.errors.any? && resource.errors.messages[attr].any?
+  end
+
+  def resource_errors(attr)
+    if resource.errors.messages[attr].any?
+      resource.errors.messages[attr].each do |e|
+        haml_tag :span, class:"error" do
+          haml_concat e
+        end
+      end
+    end
+  end
+
 end
