@@ -14,11 +14,13 @@
 
   %div{class:"row"}
     %div{class:"large-6 columns"}
-      = f.label :fname, 'Vorname'
-      = f.text_field :fname, required: true, autofocus: true
+      = f.label :fname, 'Vorname *'
+      = f.text_field :fname, required: true, autofocus: true, class: error_class_for_resource(:fname)
+      - resource_errors(:fname)
     %div{class:"large-6 columns"}
-      = f.label :lname, 'Nachname'
-      = f.text_field :lname, required: true
+      = f.label :lname, 'Nachname *'
+      = f.text_field :lname, required: true, class: error_class_for_resource(:lname)
+      - resource_errors(:lname)
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
@@ -47,42 +49,48 @@
     %div{class:"large-12 columns"}
       %div{class:"row"}
         %div{class:"small-10 columns"}
-          = f.label :street, 'Straße'
+          = f.label :street, 'Straße *'
         %div{class:"small-2 columns"}
-          = f.label :streetno, 'Nr.'
+          = f.label :streetno, 'Nr. *'
     %div{class:"large-12 columns"}
       %div{class:"row"}
         %div{class:"small-10 columns"}
-          = f.text_field :street, required: true
+          = f.text_field :street, required: true, class: error_class_for_resource(:street)
+          - resource_errors(:street)
         %div{class:"small-2 columns"}
-          = f.text_field :streetno, size:3, required: true
+          = f.text_field :streetno, size:3, required: true, class: error_class_for_resource(:streetno)
+          - resource_errors(:streetno)
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
       %div{class:"row"}
         %div{class:"small-3 columns"}
-          = f.label :zip, 'PLZ'
+          = f.label :zip, 'PLZ *'
         %div{class:"small-9 columns"}
-          = f.label :place, 'Ort'
+          = f.label :place, 'Ort *'
     %div{class:"large-12 columns"}
       %div{class:"row"}
         %div{class:"small-3 columns"}
-          = f.text_field :zip, size:5, required: true
+          = f.text_field :zip, size:5, required: true, class: error_class_for_resource(:zip)
+          - resource_errors(:zip)
         %div{class:"small-9 columns"}
-          = f.text_field :place, required: true
+          = f.text_field :place, required: true, class: error_class_for_resource(:place)
+          - resource_errors(:place)
 
   %div{class:"row"}
     %div{class:"large-6 columns"}
-      = f.label :birthday, 'Geburtstag'
-      = f.text_field :birthday, required: true
+      = f.label :birthday, 'Geburtstag *'
+      = f.text_field :birthday, required: true, class: error_class_for_resource(:birthday)
+      - resource_errors(:birthday)
     %div{class:"large-6 columns"}
       = f.label :phone, 'Telefon-Nummer'
       = f.phone_field :phone
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
-      = f.label :study, 'Studiengang'
-      = f.select :study, [['2-Fach Bachelor', 0], ['Landschaftsökologie', 1], ['Geographie', 2], ['Geoinformatik', 3]], required: true, prompt: true
+      = f.label :study, 'Studiengang *'
+      = f.select :study, [['2-Fach Bachelor', 0], ['Landschaftsökologie', 1], ['Geographie', 2], ['Geoinformatik', 3]], required: true, prompt: true, class: error_class_for_resource(:study)
+      - resource_errors(:study)
 
   %div{class:"row"}
     %div{class:"large-6 columns"}
