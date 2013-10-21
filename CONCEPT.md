@@ -18,7 +18,9 @@ Benötigte Sachen
    * [x] Liste aller Teilnehmer
     * Mail an alle
     * Mail an einzelnen
-   * Das System für das nächste Jahr fit machen
+   * [x]Das System für das nächste Jahr fit machen
     * [x] neue Tickets generieren dabei werden die Namen vom letzten Jahr gelöscht
     * [x] Tickets ausdrucken
+   * Secret Token neu generieren
+   * Mails konfigurieren / Texte ändern
 
