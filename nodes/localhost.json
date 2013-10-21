@@ -2,7 +2,8 @@
   "run_list":[
     "apt",
     "databox::postgresql",
-    "rackbox"
+    "rackbox",
+    "nodejs"
   ],
   "appbox": {
     "deploy_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"],
@@ -29,6 +30,10 @@
           "hostname": "erstiwe_anmeldung" }
       ]
     }
+  },
+  "nodejs": {
+    "version": "0.10.21",
+    "npm": "1.3.11"
   }
 }
 

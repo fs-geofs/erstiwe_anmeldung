@@ -5,6 +5,11 @@ Rails app for the students representatives geoinformatics Münster to allow stud
 
 Rails app der Fachschaft Geoinformatik Münster für die Anmeldung für das Erstiwochenende.
 
+Hints
+-----
+
+  bundle exec cap deploy
+
 Create an admin user
 --------------------
 

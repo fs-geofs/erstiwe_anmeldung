@@ -1,16 +1,19 @@
 set :application, 'erstiwe_anmeldung'
 set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
 
-set :branch, 'master'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/home/apps/erstiwe_anmeldung'
-set :default_shell, '/bin/bash --login'
+#set :default_shell, '/bin/bash --login'
 
-set :bundle_flags, "--deployment --binstubs"
-set :bundle_without, [:test, :development, :deploy]
+set :bundle_flags, "--deployment"
+set :bundle_without, "test development deploy"
 
-# set :scm, :git
+set :rbenv_type, :system # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.0.0-p247'
+set :rbenv_custom_path, '/opt/rbenv'
+
+# set :rails_env, :production
 
 # set :format, :pretty
 # set :log_level, :debug

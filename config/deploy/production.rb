@@ -1,7 +1,7 @@
 set :stage, :production
 
-SSHKit.config.command_map[:rake]  = "source set_environment;bundle exec rake"
-SSHKit.config.command_map[:rails] = "bundle exec rails"
+#SSHKit.config.command_map[:rake]  = "bundle exec rake"
+#SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 # Simple Role Syntax
 # ==================
@@ -43,3 +43,4 @@ role :db,  %w{deploy@localhost:2222}
 # setting per server overrides global ssh_options
 
 fetch(:default_env).merge!(rails_env: :production)
+# set :rails_env, :production

@@ -8,6 +8,7 @@ group :development do
   gem 'sqlite3'
   gem 'pry'
   gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem "knife-solo", ">= 0.3.0"
