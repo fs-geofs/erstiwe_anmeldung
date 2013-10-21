@@ -1,6 +1,6 @@
 set :stage, :production
 
-SSHKit.config.command_map[:rake]  = "RAILS_ENV=production bundle exec rake"
+SSHKit.config.command_map[:rake]  = "source set_environment;bundle exec rake"
 SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 # Simple Role Syntax
@@ -8,9 +8,9 @@ SSHKit.config.command_map[:rails] = "bundle exec rails"
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{deploy@78.47.47.148}
-role :web, %w{deploy@78.47.47.148}
-role :db,  %w{deploy@78.47.47.148}
+role :app, %w{deploy@localhost:2222}
+role :web, %w{deploy@localhost:2222}
+role :db,  %w{deploy@localhost:2222}
 
 # Extended Server Syntax
 # ======================
@@ -42,4 +42,4 @@ role :db,  %w{deploy@78.47.47.148}
 #   }
 # setting per server overrides global ssh_options
 
-# fetch(:default_env).merge!(rails_env: :production)
+fetch(:default_env).merge!(rails_env: :production)

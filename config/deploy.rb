@@ -4,7 +4,12 @@ set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
 set :branch, 'master'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, '/var/www/erstiwe_anmeldung'
+set :deploy_to, '/home/apps/erstiwe_anmeldung'
+set :default_shell, '/bin/bash --login'
+
+set :bundle_flags, "--deployment --binstubs"
+set :bundle_without, [:test, :development, :deploy]
+
 # set :scm, :git
 
 # set :format, :pretty
@@ -14,27 +19,23 @@ set :deploy_to, '/var/www/erstiwe_anmeldung'
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
- set :default_env, { path: "/home/deploy/.rbenv/shims:$PATH" }
+# set :default_env, { path: "/home/deploy/.rbenv/shims:$PATH" }
 # set :keep_releases, 5
 
 namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
+  # task :start do
+  #   run "sudo sv up app1"
+  # end
+  # task :stop do
+  #   run "sudo sv down app1"
+  # end
+  # task :restart
+  #   on roles(:app), in: :groups, max: 3, wait: 5 do
+  #     run "sudo sv restart app1"
+  #   end
+  # end
 
   after :finishing, 'deploy:cleanup'
 

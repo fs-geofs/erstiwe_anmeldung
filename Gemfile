@@ -10,6 +10,8 @@ group :development do
   gem 'capistrano', '~> 3.0.0'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
+  gem "knife-solo", ">= 0.3.0"
+  gem "berkshelf"
 end
 
 group :production do
@@ -41,11 +43,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  # gem 'sdoc', require: false
 end
 
 gem 'rails-i18n'
