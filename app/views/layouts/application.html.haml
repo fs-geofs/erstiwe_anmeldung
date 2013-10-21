@@ -1,0 +1,69 @@
+!!! 5
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+%head
+  %meta{ :charset => "utf-8" }
+
+  -# Uncomment to make IE8 render like IE7
+  -# meta http-equiv="X-UA-Compatible" content="IE=7"
+  
+  -# Set the viewport width to device width for mobile
+  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0, user-scalable=false;" }
+
+  %title= content_for?(:title) ? yield(:title) : "ErstiweAnmeldung"
+
+  -# Included CSS Files
+  = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+
+  -# Included JS Files
+  = javascript_include_tag "application", "data-turbolinks-track" => true
+
+  = csrf_meta_tag
+
+%body
+  - flash.each do |name, msg|
+    - if msg.is_a?(String)
+      :javascript
+        setTimeout(function() { $('a.close').trigger('click'); }, 3000);
+      %div{class:"row"}
+        %div{class:"large-12 columns"}
+          %div{ data: {alert: true}, class: "alert-box #{name} radius", id: "flash_#{name}" }
+            = msg
+            %a{ href: "#", class: "close" } &times;
+
+  - if user_signed_in?
+    %div{class:"row"}
+      %div{class:"large-12 columns"}
+        %ul{class:'inline-list'}
+          %li
+            = current_user.email #{"(admin)" if current_user.admin?}
+          - if current_user.admin?
+            %li
+              = link_to 'Liste der Anmeldungen', users_list_path
+            %li
+              = link_to 'Tickets ausdrucken', tickets_print_path
+            %li
+              = link_to 'Anmeldeseite konfigurieren', app_config_path
+          - else
+            %li
+              = link_to 'Meine Daten', edit_user_registration_path
+          %li
+            = link_to 'Ausloggen', destroy_user_session_path, method: :delete
+
+  %div{style:'clear:both;'}
+  - if !content_for?(:override_width)
+    %div{class:"row"}
+      %div{class:"small-12 columns"}
+        = yield
+  - else
+    = yield
+
+  :javascript
+    $(document).foundation();
+
+
+
+
+
+

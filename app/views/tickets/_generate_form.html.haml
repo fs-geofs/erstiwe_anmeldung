@@ -1,0 +1,4 @@
+%div{class:"row"}
+  %div{class:"small-11 small-centered columns"}
+    = form_tag action: 'generate' do
+      = submit_tag "Neue Tickets generieren", confirm: "Sicher? Dadurch werden auch die Registrierungen gelöscht!", class:"button small"

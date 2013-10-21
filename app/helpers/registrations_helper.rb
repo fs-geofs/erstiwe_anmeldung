@@ -8,9 +8,9 @@ module RegistrationsHelper
   def gender_color gender
     case gender
       when 1
-        safe_concat ' class="male"'
+        "male"
       when 2
-        safe_concat ' class="female"'
+        "female"
     end
   end
 
@@ -30,13 +30,13 @@ module RegistrationsHelper
   def study_color study
     case study
       when 0
-        safe_concat ' class="zfgeo"'
+        "zfgeo"
       when 1
-        safe_concat ' class="loek"'
+        "loek"
       when 2
-        safe_concat ' class="geo"'
+        "geo"
       when 3
-        safe_concat ' class="gi"'
+        "gi"
     end
   end
 
@@ -49,7 +49,25 @@ module RegistrationsHelper
     end
   end
 
-  def attention_color
-    safe_concat ' class="attention"'
+  def attention_color for_what
+    case for_what
+      when true
+        "attention"
+    end
   end
+
+  def error_class_for_resource(attr)
+    "error" if resource.errors.any? && resource.errors.messages[attr].any?
+  end
+
+  def resource_errors(attr)
+    if resource.errors.messages[attr].any?
+      resource.errors.messages[attr].each do |e|
+        haml_tag :span, class:"error" do
+          haml_concat e
+        end
+      end
+    end
+  end
+
 end

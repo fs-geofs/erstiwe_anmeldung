@@ -53,6 +53,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    haml (4.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.1)
@@ -129,6 +131,7 @@ GEM
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
+    time_splitter (1.0.0)
     tins (0.12.0)
     treetop (1.4.15)
       polyglot
@@ -151,6 +154,7 @@ DEPENDENCIES
   capistrano-rails
   coffee-rails (~> 4.0.0)
   devise
+  haml
   jbuilder (~> 1.2)
   jquery-rails
   pg
@@ -160,5 +164,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3
+  time_splitter
   turbolinks
   uglifier (>= 1.3.0)

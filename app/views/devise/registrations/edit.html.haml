@@ -1,0 +1,141 @@
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Anmeldung vervollständigen
+
+
+%div{class:"row"}
+  %div{class:"large-12 columns"}
+    = link_to "E-Mail oder Passwort ändern", edit_credentials_path
+
+%br
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class:"custom" }) do |f| 
+  = devise_error_messages!
+
+  %div{class:"row"}
+    %div{class:"large-6 columns"}
+      = f.label :fname, 'Vorname *'
+      = f.text_field :fname, required: true, autofocus: true, class: error_class_for_resource(:fname)
+      - resource_errors(:fname)
+    %div{class:"large-6 columns"}
+      = f.label :lname, 'Nachname *'
+      = f.text_field :lname, required: true, class: error_class_for_resource(:lname)
+      - resource_errors(:lname)
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :gender, 'Geschlecht'
+    %div{class:"large-12 columns"}
+      %div{class:"row"}
+        %div{class:"small-4 columns text-center"}
+          = label_tag 'user_gender_0' do
+            = f.radio_button :gender, '0', checked: true
+            %span{class:"custom radio"}
+            keine Antwort
+        %div{class:"small-4 columns text-center"}
+          = label_tag 'user_gender_1' do
+            = f.radio_button :gender, '1'
+            %span{class:"custom radio"}
+            männlich
+        %div{class:"small-4 columns text-center"}
+          = label_tag 'user_gender_2' do
+            = f.radio_button :gender, '2'
+            %span{class:"custom radio"}
+            weiblich
+
+  %br
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      %div{class:"row"}
+        %div{class:"small-10 columns"}
+          = f.label :street, 'Straße *'
+        %div{class:"small-2 columns"}
+          = f.label :streetno, 'Nr. *'
+    %div{class:"large-12 columns"}
+      %div{class:"row"}
+        %div{class:"small-10 columns"}
+          = f.text_field :street, required: true, class: error_class_for_resource(:street)
+          - resource_errors(:street)
+        %div{class:"small-2 columns"}
+          = f.text_field :streetno, size:3, required: true, class: error_class_for_resource(:streetno)
+          - resource_errors(:streetno)
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      %div{class:"row"}
+        %div{class:"small-3 columns"}
+          = f.label :zip, 'PLZ *'
+        %div{class:"small-9 columns"}
+          = f.label :place, 'Ort *'
+    %div{class:"large-12 columns"}
+      %div{class:"row"}
+        %div{class:"small-3 columns"}
+          = f.text_field :zip, size:5, required: true, class: error_class_for_resource(:zip)
+          - resource_errors(:zip)
+        %div{class:"small-9 columns"}
+          = f.text_field :place, required: true, class: error_class_for_resource(:place)
+          - resource_errors(:place)
+
+  %div{class:"row"}
+    %div{class:"large-6 columns"}
+      = f.label :birthday, 'Geburtstag *'
+      = f.text_field :birthday, required: true, class: error_class_for_resource(:birthday)
+      - resource_errors(:birthday)
+    %div{class:"large-6 columns"}
+      = f.label :phone, 'Telefon-Nummer'
+      = f.phone_field :phone
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :study, 'Studiengang *'
+      = f.select :study, [['2-Fach Bachelor', 0], ['Landschaftsökologie', 1], ['Geographie', 2], ['Geoinformatik', 3]], required: true, prompt: true, class: error_class_for_resource(:study)
+      - resource_errors(:study)
+
+  %div{class:"row"}
+    %div{class:"large-6 columns"}
+      = f.label :vegetarian do
+        = f.check_box :vegetarian
+        Ich bin Vegetarier
+    %div{class:"large-6 columns"}
+      = f.label :vegan do
+        = f.check_box :vegan
+        Ich bin Veganer
+
+  %br
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :comment, 'Sonstiges (Allergien etc.)'
+      = f.text_area :comment
+
+  %div{class:"row"}
+    %div{class:"small-6 small-centered columns"}
+      = f.submit "Daten speichern", class: "button expand radius success"
+
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h3 Anmeldung löschen
+
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %p
+      Ich möchte meine Anmeldung löschen, und nicht mehr mitfahren.
+      %button{class: "button radius tiny alert", data:{reveal: {id:"confirm-delete"}}} Anmeldung löschen
+
+%div{class:"reveal-modal", id:"confirm-delete"}
+  %h2 Bist du dir sicher?
+  %p 
+    Wenn du auf den 'Anmeldung löschen' Knopf drückst, werden deine Daten gelöscht und dein Platz neu vergeben.
+    %br
+    Dein Ticket verliert seine Gültigkeit.
+  %div{class:"row"}
+    %div{class:"small-6 columns text-center"}
+      %button{class:"button radius small success", onclick:"$('a.close-reveal-modal').trigger('click');"} Abbrechen
+    %div{class:"small-6 columns text-center"}
+    = button_to "Anmeldung löschen", registration_path(resource_name), :method => :delete, class: "button radius small alert"
+  %a{class:"close-reveal-modal"} &#215;
+
+:javascript
+  $('#user_birthday').fdatepicker({format:'yyyy-mm-dd'});
+
