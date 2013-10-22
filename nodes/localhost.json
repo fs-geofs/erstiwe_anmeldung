@@ -1,6 +1,5 @@
 {
   "run_list":[
-    "apt",
     "databox::postgresql",
     "rackbox",
     "nodejs"
@@ -30,6 +29,9 @@
           "hostname": "erstiwe_anmeldung" }
       ]
     }
+  },
+  "nginx": {
+    "version": "1.5.6"
   },
   "nodejs": {
     "version": "0.10.21",

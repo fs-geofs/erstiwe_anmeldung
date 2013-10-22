@@ -28,17 +28,18 @@ set :rbenv_custom_path, '/opt/rbenv'
 namespace :deploy do
 
 
-  # task :start do
-  #   run "sudo sv up app1"
-  # end
-  # task :stop do
-  #   run "sudo sv down app1"
-  # end
-  # task :restart
-  #   on roles(:app), in: :groups, max: 3, wait: 5 do
-  #     run "sudo sv restart app1"
-  #   end
-  # end
+  task :start do
+    sudo "sv up app1"
+  end
+  task :stop do
+    sudo "sv down app1"
+  end
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :groups, max: 3, wait: 5 do
+      sudo :sv, 'restart erstiwe_anmeldung'
+    end
+  end
 
   after :finishing, 'deploy:cleanup'
 
