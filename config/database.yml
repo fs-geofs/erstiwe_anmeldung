@@ -24,4 +24,4 @@ production:
   pool: 5
   host: localhost
   username: erstiwe_anmeldung
-  password: <%= ENV['RAILS_DB_PWD'] %>
+  password: pgpass
