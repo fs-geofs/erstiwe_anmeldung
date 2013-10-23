@@ -1,0 +1,31 @@
+server {
+  server_name localhost;
+  listen 80;
+
+  root /home/apps/erstiwe_anmeldung/current/public;
+
+  passenger_enabled on;
+
+  access_log /var/log/nginx/erstiwe_anmeldung-access.log combined;
+  error_log  /var/log/nginx/erstiwe_anmeldung-error.log;
+
+  rewrite_log on;
+
+  # use the application's 500.html page
+  error_page 500 502 503 504 /500.html;
+
+  # allow clients to upload large files (if necessary)
+  client_max_body_size 4G;
+
+#  location / {
+#    try_files /system/maintenance.html
+#              $uri $uri/index.html $uri.html;
+#  }
+
+  location ~ ^/(assets)/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+}

@@ -1,41 +1,62 @@
 {
-  "run_list":[
+  "run_list": [
     "databox::postgresql",
     "rackbox",
     "nodejs"
   ],
   "appbox": {
-    "deploy_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"],
-    "admin_keys": ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"]
+    "deploy_keys": [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"
+    ],
+    "admin_keys": [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"
+    ]
   },
   "databox": {
     "db_root_password": "welcome!",
     "databases": {
       "postgresql": [
-        { "username": "erstiwe_anmeldung",
+        {
+          "username": "erstiwe_anmeldung",
           "password": "pgpass",
-          "database_name": "erstiwe_anmeldung_production" }
+          "database_name": "erstiwe_anmeldung_production"
+        }
       ]
     }
   },
   "rackbox": {
     "ruby": {
-      "versions": ["2.0.0-p247"],
+      "versions": [
+        "2.0.0-p247"
+      ],
       "global_version": "2.0.0-p247"
     },
     "apps": {
       "passenger": [
-        { "appname": "erstiwe_anmeldung",
-          "hostname": "erstiwe_anmeldung" }
+        {
+          "appname": "erstiwe_anmeldung",
+          "hostname": "erstiwe_anmeldung"
+        }
       ]
     }
   },
   "nginx": {
-    "version": "1.5.6"
+    "version": "1.5.6",
+    "passenger": {
+      "version": "4.0.20",
+      "ruby": "/opt/rbenv/versions/2.0.0-p247/bin/ruby",
+      "root": "/opt/rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/passenger-4.0.20"
+    },
+    "source": {
+      "modules": [
+        "nginx::http_ssl_module",
+        "nginx::http_gzip_static_module",
+        "nginx::passenger"
+      ]
+    }
   },
   "nodejs": {
     "version": "0.10.21",
     "npm": "1.3.11"
   }
 }
-
