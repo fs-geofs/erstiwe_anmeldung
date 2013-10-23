@@ -1,6 +1,8 @@
 set :application, 'erstiwe_anmeldung'
 set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
 
+set :branch, 'chef'
+
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/home/apps/erstiwe_anmeldung'
@@ -19,7 +21,7 @@ set :rbenv_custom_path, '/opt/rbenv'
 # set :log_level, :debug
 # set :pty, true
 
-set :linked_files, %w{config/database.yml}
+# set :linked_files, %w{config/database.yml}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # set :default_env, { path: "/home/deploy/.rbenv/shims:$PATH" }
