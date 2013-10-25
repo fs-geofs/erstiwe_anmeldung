@@ -1,5 +1,5 @@
 {
-  "sha": "1bc554e2eb9a000b9021432ea93fb79e2386b00c",
+  "sha": "a35de0e355ceeb3b25b509c622dbb489036561da",
   "sources": {
     "nginx": {
       "path": "./site-cookbooks/nginx"
