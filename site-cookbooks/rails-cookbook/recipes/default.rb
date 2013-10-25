@@ -15,6 +15,18 @@ include_recipe 'rails-cookbook::users'
 # create directories for users
 include_recipe 'rails-cookbook::apps_dir'
 
+# create database.yml for symlinking to rails app
+template(File.join(node["users"]["apps_dir"], )) do
+  source 'database.yml.erb'
+  owner 'apps'
+  group 'apps'
+  variables(
+    database: node["postgresql"]["databases"][0]["database_name"],
+    user: node["postgresql"]["databases"][0]["username"],
+    password: node["postgresql"]["databases"][0]["password"]
+  )
+end
+
 # install git and curl
 include_recipe 'curl'
 include_recipe 'git'
