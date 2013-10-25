@@ -2,10 +2,10 @@
   "run_list": [
     "rails-cookbook"
   ],
-  "app":{  
+  "app": {
     "appname": "erstiwe_anmeldung",
     "hostname": "localhost"
-    },
+  },
   "users": {
     "deploy_keys": [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDr4RlVVFsoLHtjpqyXhUDMvm94QdpL1V3BNZaI3Ohq/GNeFntmZLOEqsUdnvxDKRKvjkQLMYkiStye5ivZ5+fpGqMUu7cgkZSEENvoYPcPCSLQFpjHyBBb30Z1clF/nowqTtrKrHXTrtd0CbFb+RvEuY3DwDGVAxmL8vAP6VkBCnOG6NZ/YAb/TADRKPg3uVwfROKlWUphS4vnkihVGxYE//GsUBhDs/cyDaaiayuDuUmacRY+su8hAUCR7LaXESOI+F9PueKr8c+qvlyQ9OEGQQFLNAJGHANjOWM1M8lKwO8Jfm3IY+1UrU1RopaATw2f5HxwgvJNUO4T/qgVUaNn ubergesundheit@googlemail.com"
@@ -17,17 +17,19 @@
   "postgresql": {
     "version": "9.3",
     "db_root_password": "welcome!",
+    "config": {
+      "ssl": false
+    },
     "databases": [
-        {
-          "username": "erstiwe_anmeldung",
-          "password": "pgpass",
-          "database_name": "erstiwe_anmeldung_production"
-        }
-      ]
+      {
+        "username": "erstiwe_anmeldung",
+        "password": "pgpass",
+        "database_name": "erstiwe_anmeldung_production"
+      }
+    ]
   },
   "ruby": {
-    "version":
-      "2.0.0-p247"
+    "version": "2.0.0-p247"
   },
   "nginx": {
     "version": "1.5.6",
