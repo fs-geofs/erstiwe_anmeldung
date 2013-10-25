@@ -15,3 +15,10 @@ default["databases"]["postgresql"] = []
 default["ruby"]["version"] = "2.0.0-p247"
 
 default["rails-cookbook"]["default_config"]["nginx"]["template_name"] = "nginx_vhost.conf.erb"
+
+
+default['nginx']['source']['modules'] = %w[
+                                          nginx::http_ssl_module
+                                          nginx::http_gzip_static_module
+                                          nginx::passenger
+                                          ]
