@@ -11,8 +11,11 @@ end
 
 group :deploy do
   gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
+  gem 'knife-solo', '>= 0.3.0'
+  gem 'berkshelf'
 end
 
 group :production do
