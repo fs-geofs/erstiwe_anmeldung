@@ -1,7 +1,7 @@
 set :application, 'erstiwe_anmeldung'
 set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
 
-set :branch, 'chef'
+set :branch, 'master'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
