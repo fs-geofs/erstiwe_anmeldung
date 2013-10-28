@@ -15,32 +15,21 @@ postgresql_connection_info = {
   :password => node['postgresql']['password']['postgres']
 }
 
-node["postgresql"]["databases"].each do |entry|
 
-  postgresql_database entry["database_name"] do
-    connection postgresql_connection_info
-    template entry["template"] if entry["template"]
-    encoding entry["encoding"] if entry["encoding"]
-    collation entry["collation"] if entry["collation"]
-    connection_limit entry["connection_limit"] if entry["connection_limit"]
-    owner entry["owner"] if entry["owner"]
-    action :create
-  end
-
-  postgresql_database_user entry["username"] do
-    connection postgresql_connection_info
-    action [:create, :grant]
-    password(entry["password"]) if entry["password"]
-    database_name(entry["database_name"]) if entry["database_name"]
-    privileges(entry["privileges"]) if entry["privileges"]
-  end
-
+postgresql_database node["postgresql"]["database"]["database_name"] do
+  connection postgresql_connection_info
+  template node["postgresql"]["database"]["template"] if node["postgresql"]["database"]["template"]
+  encoding node["postgresql"]["database"]["encoding"] if node["postgresql"]["database"]["encoding"]
+  collation node["postgresql"]["database"]["collation"] if node["postgresql"]["database"]["collation"]
+  connection_limit node["postgresql"]["database"]["connection_limit"] if node["postgresql"]["database"]["connection_limit"]
+  owner node["postgresql"]["database"]["owner"] if node["postgresql"]["database"]["owner"]
+  action :create
 end
 
-# execute "create-database-user" do
-#   code = <<-EOH
-#   sudo su postgres -c \"psql -c "select * from pg_user where username='#{node[:databases][:postgresql][:username]}'" | grep -c #{node[:databases][:postgresql][:username]}\"
-#   EOH
-#   command "sudo su postgres -c 'createuser -sw #{node[:databases][:postgresql][:username]}'"
-#   not_if code
-# end
+postgresql_database_user node["postgresql"]["database"]["username"] do
+  connection postgresql_connection_info
+  action [:create, :grant]
+  password(node["postgresql"]["database"]["password"]) if node["postgresql"]["database"]["password"]
+  database_name(node["postgresql"]["database"]["database_name"]) if node["postgresql"]["database"]["database_name"]
+  privileges(node["postgresql"]["database"]["privileges"]) if node["postgresql"]["database"]["privileges"]
+end

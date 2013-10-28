@@ -15,17 +15,12 @@
   "postgresql": {
     "version": "9.3",
     "db_root_password": "SECUREpasswordFORpostgresDATABASEuser",
-    "databases": [
+    "database": 
       {
         "username": "erstiwe_anmeldung",
         "password": "pgpass",
         "database_name": "erstiwe_anmeldung_production"
       }
-    ],
-    // don't change to true or the database will not restart
-    "config": {
-      "ssl": false
-    }
   },
   "ruby": {
     "version": "2.0.0-p247"

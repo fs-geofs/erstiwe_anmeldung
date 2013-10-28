@@ -1,16 +1,13 @@
 set :stage, :production
 
-#SSHKit.config.command_map[:rake]  = "bundle exec rake"
-#SSHKit.config.command_map[:rails] = "bundle exec rails"
-
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{deploy@hostname_or_ip}
-role :web, %w{deploy@hostname_or_ip}
-role :db,  %w{deploy@hostname_or_ip}
+role :app, %w{deploy@your_hostname_or_ip}
+role :web, %w{deploy@your_hostname_or_ip}
+role :db,  %w{deploy@your_hostname_or_ip}
 
 # Extended Server Syntax
 # ======================
@@ -18,7 +15,7 @@ role :db,  %w{deploy@hostname_or_ip}
 # definition into the server list. The second argument
 # something that quacks like a has can be used to set
 # extended properties on the server.
-#server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+# server '78.47.47.148', user: 'deploy', roles: %w{app web db}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
@@ -43,4 +40,3 @@ role :db,  %w{deploy@hostname_or_ip}
 # setting per server overrides global ssh_options
 
 # fetch(:default_env).merge!(rails_env: :production)
-# set :rails_env, :production

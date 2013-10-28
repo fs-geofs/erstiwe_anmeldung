@@ -1,5 +1,7 @@
 default["app"]["appname"] = ""
 default["app"]["hostname"] = "localhost"
+require 'securerandom'
+default["app"]["secret_token"] = SecureRandom.hex(64)
 default["users"]["deploy_keys"] = []
 default["users"]["apps_dir"] = "/home/apps"
 
@@ -10,7 +12,8 @@ default["postgresql"]["db_root_password"] = nil
 
 # A list of database_user's attribute parameters.
 # See database cookbook for details.
-default["databases"]["postgresql"] = []
+default["postgresql"]["database"] = nil
+default["postgresql"]["config"]["ssl"] = false
 
 default["ruby"]["version"] = "2.0.0-p247"
 
