@@ -10,7 +10,7 @@ Rails app der Fachschaft Geoinformatik Münster für die Anmeldung für das Erst
 
   1.  Prepare your deployment environment
     * Generate a ssh-key and copy it to your server
-    * Clone this repository (best with the https, or you have to add github to the known_hosts on your server)
+    * Clone this repository and checkout the `deploy` branch
     * Install the latest ruby 2
     * run `gem install bundle` (you probably need to use sudo)
     * cd into the repo and run `bundle install --without development production`
