@@ -2,10 +2,10 @@
   %div{class:"small-9 large-centered columns"}
     %h2 Anmeldung vervollständigen
 
-
-%div{class:"row"}
-  %div{class:"large-12 columns"}
-    = link_to "E-Mail oder Passwort ändern", edit_credentials_path
+- if !current_user.admin?
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = link_to "E-Mail oder Passwort ändern", edit_credentials_path
 
 %br
 
@@ -13,6 +13,12 @@
   = devise_error_messages!
 
   = f.hidden_field :id
+
+  - if current_user.admin?
+    %div{class:"row"}
+      %div{class:"large-12 columns"}
+        = f.label :email, 'E-Mail (Vorsicht!! Sendet bei Änderung eine Bestätigungsmail an die neue Adresse)'
+        = f.email_field :email, autofocus: true
 
   %div{class:"row"}
     %div{class:"large-6 columns"}
