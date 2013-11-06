@@ -2,7 +2,7 @@
   * [] Warteliste
   * [] Warteliste öffnen/schließen
   * [] Mail an alle wartenden senden mit neuem Ticket
-  * [] Anmeldung bearbeiten
+  * [x] Anmeldung bearbeiten
   * [] Unvollständige Anmeldungen auflisten
   * [] Mails bearbeitbar machen
   * [] Mail an alle/(un)vollständigen/einzelne Anmeldung
