@@ -4,7 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :admin!, :only => :list
 
   def update
-    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    if current_user.admin?
+      self.resource = User.find(params[:user][:id])
+    else
+      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    end
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
     
     successfully_updated = if needs_password?(resource, account_update_params)
@@ -23,16 +27,26 @@ class RegistrationsController < Devise::RegistrationsController
           :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
-      sign_in resource_name, resource, :bypass => needs_password?(resource, account_update_params)
-      respond_with resource, :location => after_update_path_for(resource)
+      sign_in resource_name, resource, :bypass => needs_password?(resource, account_update_params) unless current_user.admin?
+      if current_user.admin?
+        redirect_to users_list_path
+      else
+        respond_with resource, :location => after_update_path_for(resource)
+      end
       # send registration complete mail
-      if resource.details_present?
+      if resource.details_present? && !current_user.admin?
         RegistrationMailer.registration_complete_mail(resource) unless needs_password?(resource, account_update_params)
       end
     else
       clean_up_passwords resource
       respond_with resource
     end
+  end
+
+  def edit
+    #somehow devise uses @user internally for resource
+    @user = User.find(params[:id]) if current_user.admin?
+    render :edit
   end
 
   def edit_email_password
@@ -77,8 +91,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def needs_password?(user, params)
-      #user.email != params[:email] ||
-        params[:password].present? or params[:email].present?
+       params[:password].present? or (params[:email].present? and !current_user.admin?)
     end
 
 

@@ -2,15 +2,23 @@
   %div{class:"small-9 large-centered columns"}
     %h2 Anmeldung vervollständigen
 
-
-%div{class:"row"}
-  %div{class:"large-12 columns"}
-    = link_to "E-Mail oder Passwort ändern", edit_credentials_path
+- if !current_user.admin?
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = link_to "E-Mail oder Passwort ändern", edit_credentials_path
 
 %br
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class:"custom" }) do |f| 
   = devise_error_messages!
+
+  = f.hidden_field :id
+
+  - if current_user.admin?
+    %div{class:"row"}
+      %div{class:"large-12 columns"}
+        = f.label :email, 'E-Mail (Vorsicht!! Sendet bei Änderung eine Bestätigungsmail an die neue Adresse)'
+        = f.email_field :email, autofocus: true
 
   %div{class:"row"}
     %div{class:"large-6 columns"}
@@ -93,11 +101,11 @@
       - resource_errors(:study)
 
   %div{class:"row"}
-    %div{class:"large-6 columns"}
+    %div{class:"large-6 columns text-center"}
       = f.label :vegetarian do
         = f.check_box :vegetarian
         Ich bin Vegetarier
-    %div{class:"large-6 columns"}
+    %div{class:"large-6 columns text-center"}
       = f.label :vegan do
         = f.check_box :vegan
         Ich bin Veganer
@@ -113,28 +121,30 @@
     %div{class:"small-6 small-centered columns"}
       = f.submit "Daten speichern", class: "button expand radius success"
 
-%div{class:"row"}
-  %div{class:"small-9 large-centered columns"}
-    %h3 Anmeldung löschen
-
-%div{class:"row"}
-  %div{class:"small-9 large-centered columns"}
-    %p
-      Ich möchte meine Anmeldung löschen, und nicht mehr mitfahren.
-      %button{class: "button radius tiny alert", data:{reveal: {id:"confirm-delete"}}} Anmeldung löschen
-
-%div{class:"reveal-modal", id:"confirm-delete"}
-  %h2 Bist du dir sicher?
-  %p 
-    Wenn du auf den 'Anmeldung löschen' Knopf drückst, werden deine Daten gelöscht und dein Platz neu vergeben.
-    %br
-    Dein Ticket verliert seine Gültigkeit.
+- if !current_user.admin?
   %div{class:"row"}
-    %div{class:"small-6 columns text-center"}
-      %button{class:"button radius small success", onclick:"$('a.close-reveal-modal').trigger('click');"} Abbrechen
-    %div{class:"small-6 columns text-center"}
-    = button_to "Anmeldung löschen", registration_path(resource_name), :method => :delete, class: "button radius small alert"
-  %a{class:"close-reveal-modal"} &#215;
+    %div{class:"small-9 large-centered columns"}
+      %h3 Anmeldung löschen
+
+
+  %div{class:"row"}
+    %div{class:"small-9 large-centered columns"}
+      %p
+        Ich möchte meine Anmeldung löschen, und nicht mehr mitfahren.
+        %button{class: "button radius tiny alert", data:{reveal: {id:"confirm-delete"}}} Anmeldung löschen
+
+  %div{class:"reveal-modal", id:"confirm-delete"}
+    %h2 Bist du dir sicher?
+    %p 
+      Wenn du auf den 'Anmeldung löschen' Knopf drückst, werden deine Daten gelöscht und dein Platz neu vergeben.
+      %br
+      Dein Ticket verliert seine Gültigkeit.
+    %div{class:"row"}
+      %div{class:"small-6 columns text-center"}
+        %button{class:"button radius small success", onclick:"$('a.close-reveal-modal').trigger('click');"} Abbrechen
+      %div{class:"small-6 columns text-center"}
+      = button_to "Anmeldung löschen", registration_path(resource_name), :method => :delete, class: "button radius small alert"
+    %a{class:"close-reveal-modal"} &#215;
 
 :javascript
   $('#user_birthday').fdatepicker({format:'yyyy-mm-dd'});

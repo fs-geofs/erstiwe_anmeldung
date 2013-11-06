@@ -26,7 +26,8 @@
       - if user.details_present? and !user.admin?
         %tr
           %td
-            = button_to "X", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            = button_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            = button_to "✎", edit_user_path(user),  :method => :get
           %td
             = i+=1
           %td{class: gender_color(user.gender)}
