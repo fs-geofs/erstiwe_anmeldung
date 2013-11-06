@@ -3,7 +3,7 @@
   * [] Warteliste öffnen/schließen
   * [] Mail an alle wartenden senden mit neuem Ticket
   * [x] Anmeldung bearbeiten
-  * [] Unvollständige Anmeldungen auflisten
+  * [x] Unvollständige Anmeldungen auflisten
   * [] Mails bearbeitbar machen
   * [] Mail an alle/(un)vollständigen/einzelne Anmeldung
   * [] Domain konfigurierbar machen/im Deploy dynamisch ändern

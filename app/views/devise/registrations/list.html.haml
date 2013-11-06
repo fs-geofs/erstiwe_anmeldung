@@ -9,6 +9,7 @@
     %tr
       %th Aktion
       %th Nr.
+      %th Ticket-Code
       %th Name
       %th Vorname
       %th E-Mail
@@ -26,10 +27,12 @@
       - if user.details_present? and !user.admin?
         %tr
           %td
-            = button_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
-            = button_to "✎", edit_user_path(user),  :method => :get
+            = link_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            = link_to "✎", edit_user_path(user),  :method => :get
           %td
             = i+=1
+          %td
+            = user.ticket.token
           %td{class: gender_color(user.gender)}
             = user.lname
           %td{class: gender_color(user.gender)}
@@ -53,3 +56,28 @@
             - yes_no_helper user.vegan
           %td
             = user.comment
+
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h3 Unvollständige Anmeldungen
+
+%div{class:"row"}
+  %div{class:"small-9 columns"}
+    %table{style:"width:100%;!important"}
+      %thead
+        %tr
+          %th Aktion
+          %th Ticket-Code
+          %th E-Mail
+      %tbody
+        - @users.each do |user|
+          - if !user.details_present? and !user.admin?
+            %tr
+              %td
+                = button_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+                = button_to "✎", edit_user_path(user),  :method => :get
+              %td
+                = user.ticket.token
+              %td
+                = user.email
+                = '(unbestätigt)' if !user.confirmed?
