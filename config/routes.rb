@@ -5,6 +5,7 @@ ErstiweAnmeldung::Application.routes.draw do
   devise_scope :user do
     get "users/list", :to => "registrations#list"
     get "edit_credentials", :to => "registrations#edit_email_password"
+    get "users/:id/edit", :to => "registrations#edit", as: :edit_user
   end
 
   get 'tickets/print'
