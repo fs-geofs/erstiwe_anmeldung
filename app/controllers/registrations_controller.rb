@@ -35,6 +35,12 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    #somehow devise uses @user internally for resource
+    @user = User.find(params[:id]) if current_user.admin?
+    render :edit
+  end
+
   def edit_email_password
     resource = current_user
   end
