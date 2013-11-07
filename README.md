@@ -34,4 +34,4 @@ Rails app der Fachschaft Geoinformatik Münster für die Anmeldung für das Erst
     * Leave the console typing `exit`
 
   4. Configure the app
-    * log in with your admin user and change the smtp settings
+    * got to `http://<your_hostname>/app_config` log in with your admin user and change the settings
