@@ -22,6 +22,7 @@ Rails app der Fachschaft Geoinformatik Münster für die Anmeldung für das Erst
     * run `bundle exec knife solo cook user@host` to install all dependencies on the server
     * Go drink some coffee, this takes some time
     * change the hostname in the `config/deploy/production.rb` file to your server
+    * if you changed the default deploy paths in the `nodes/<yourhost>.json`, then change them also in `config/deploy.rb`
     * run `bundle exec cap production deploy` to deploy the app
 
   3. Create an admin user

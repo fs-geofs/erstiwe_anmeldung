@@ -18,7 +18,7 @@ set :rbenv_custom_path, '/opt/rbenv'
 # set :format, :pretty
 # set :log_level, :debug
 
-set :linked_files, %w{config/database.yml config/initializers/secret_token.rb}
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/application.rb}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # set :keep_releases, 5

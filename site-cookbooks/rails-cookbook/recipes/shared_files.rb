@@ -37,3 +37,13 @@ template(File.join(node["users"]["apps_dir"], node["app"]["appname"], "shared", 
     secret: node["app"]["secret_token"]
   )
 end
+
+# create application.rb for symlinking to rails app
+template(File.join(node["users"]["apps_dir"], node["app"]["appname"], "shared", "config", "application.rb")) do
+  source 'application.rb.erb'
+  owner node["users"]["apps_user"]
+  group node["users"]["apps_user"]
+  variables(
+    host: node["app"]["hostname"]
+  )
+end
