@@ -13,9 +13,10 @@ class RegistrationMailer < Devise::Mailer
     @registration = registration
     @config = AppConfig.first
     @begin = @config.beginning
-    @end = @config.ending
+    @end = @config.ending 
     mail(mail_config({to: @registration.email,
      subject: "Anmeldung Erstiwochenende #{@begin.year} - Daten vervollständigt",
+     body: render(:inline => @config.registration_complete_mail.html_safe, content_type: "text/plain"),
      content_type: "text/plain"})).deliver
   end
 

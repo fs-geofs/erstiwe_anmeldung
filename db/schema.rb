@@ -14,14 +14,15 @@
 ActiveRecord::Schema.define(version: 20131010082732) do
 
   create_table "app_configs", force: true do |t|
-    t.datetime "beginning",                     null: false
-    t.datetime "ending",                        null: false
-    t.string   "mail_adress",   default: "",    null: false
-    t.string   "mail_server",   default: "",    null: false
-    t.string   "mail_user",     default: "",    null: false
-    t.string   "mail_password", default: "",    null: false
-    t.integer  "mail_port",     default: 25,    null: false
-    t.boolean  "mail_auth",     default: false, null: false
+    t.datetime "beginning",                                                                                                        null: false
+    t.datetime "ending",                                                                                                           null: false
+    t.string   "mail_adress",                default: "",                                                                          null: false
+    t.string   "mail_server",                default: "",                                                                          null: false
+    t.string   "mail_user",                  default: "",                                                                          null: false
+    t.string   "mail_password",              default: "",                                                                          null: false
+    t.integer  "mail_port",                  default: 25,                                                                          null: false
+    t.boolean  "mail_auth",                  default: false,                                                                       null: false
+    t.text     "registration_complete_mail", default: "ErstiwochenendeMail nicht konfiguriert. Bitte weiterleiten an fsgi@wwu.de", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

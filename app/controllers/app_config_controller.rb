@@ -6,7 +6,7 @@ class AppConfigController < ApplicationController
 
   def edit
     if !AppConfig.any?
-      AppConfig.create(beginning: Time.now, ending: Time.now + 3.days, mail_adress: "change me", mail_server:"change me", mail_user:"change me", mail_password: "change me", mail_port: 25, mail_auth: false)
+      AppConfig.create(beginning: Time.now, ending: Time.now + 3.days, mail_adress: "change me", mail_server:"change me", mail_user:"change me", mail_password: "change me", mail_port: 25, mail_auth: false, registration_complete_mail: File.open("#{Rails.root}/app/views/registration_mailer/registration_complete_mail.text.erb","r").read)
     end
     @config = AppConfig.first
   end
@@ -27,9 +27,16 @@ class AppConfigController < ApplicationController
     end
   end
 
+  def registration_complete_mail
+    render :text => AppConfig.first.registration_complete_mail
+  end
+
+  def registration_complete_mail_hard_reset
+    render :text => File.open("#{Rails.root}/app/views/registration_mailer/registration_complete_mail.text.erb","r").read
+  end  
 
   private
   def config_params
-    params.require(:app_config).permit(:beginning_date, :beginning_hour, :beginning_min, :ending_date, :ending_hour, :ending_min, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth)
+    params.require(:app_config).permit(:beginning_date, :beginning_hour, :beginning_min, :ending_date, :ending_hour, :ending_min, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth, :registration_complete_mail)
   end
 end

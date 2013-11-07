@@ -13,6 +13,8 @@ ErstiweAnmeldung::Application.routes.draw do
 
   get 'app_config' => 'app_config#edit'
   patch 'app_config' => 'app_config#update'
+  get 'app_config/reset_mail' => 'app_config#registration_complete_mail'
+  get 'app_config/reset_mail_hard' => 'app_config#registration_complete_mail_hard_reset'
 
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.

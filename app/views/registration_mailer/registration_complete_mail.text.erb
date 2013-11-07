@@ -1,4 +1,4 @@
-Hallo <%= @registration.fname %>,
+Hallo <%== @registration.fname %>,
 
 Vielen Dank für die Vervollständigung deiner Daten für das Erstiwochenende <%= @begin.year %>.
 
@@ -9,7 +9,7 @@ Das Erstiwochenende findet vom<%= l @begin, format: "%e. %B" %> bis <%= l @end, 
   Hinfahrt: <%= l @begin, format: "%d. %B um %H:%M Uhr" %> vom GEO1
   Rückfahrt: <%= l @end, format: "%d. %B um %H:%M Uhr" %> aus Drübberholz
 
-Bitte denkt daran am Freitag genügend Proviant für die Busfahrt mitzunehmen! Für die Rückfahrt werdet ihr die Möglichkeit haben euch extra Brote vom Frühstück zu schmieren und auch etwas Obst zu stibitzen.
+Bitte denkt daran am Freitag genügend Proviant für die Busfahrt mitzunehmen! Wir werden erst um etwa 19 Uhr Abendessen. Für die Rückfahrt werdet ihr die Möglichkeit haben euch extra Brote vom Frühstück zu schmieren und auch etwas Obst zu stibitzen.
 
 Die Anmeldung ist verbindlich. Wenn eine angemeldete Person an der Fahrt nicht mehr teilnehmen will/kann, ist die Rückerstattung des Teilnehmerbetrages nur möglich, wenn ein Nachfolger gefunden wird (je nach Andrang auf der Warteliste) 
 
@@ -17,30 +17,29 @@ Mitzubringen:
   * *WICHTIG*: Bettzeug oder Schlafsack & Bettlaken
     (Wer sich Bettzeug vom Haus leiht, muss diese direkt bezahlen)
   * *WICHTIG*: einen sehr persönlichen Gegenstand!
+  * *WICHTIG*: Regenkleidung (warm & trocken), 2. Paar feste und trockene Schuhe
   * Ausweis
   * Ausreichend Proviant für Freitag Mittag und Nachmittag (es gibt erst etwa 19 Uhr wieder etwas)
   * Musik: CDs, MP3s, Gitarre oder andere Instrumente, Texte, sonstige Abspielgeräte
   * Hausschuhe (nicht brennbar!)
   * Kleingeld (für Bier, Cola, Saft, Wasser,…)
     (Sonstige Einkaufsmöglichkeiten stark begrenzt)
-  * Regenkleidung (warm & trocken)
   * Schreibzeug
-  * 2 bis n Paar warme & trockene Schuhe
   * Gute Laune!
 
 Folgend noch einmal die von dir angegebenen Daten:
-<%= @registration.fname %> <%= @registration.lname %>
-<%= @registration.street %> <%= @registration.streetno %>, <%= @registration.zip %> <%= @registration.place %>
-Geburtstag: <%= @registration.birthday.strftime('%d.%m.%Y') %>
+<%== @registration.fname %> <%== @registration.lname %>
+<%== @registration.street %> <%== @registration.streetno %>, <%== @registration.zip %> <%== @registration.place %>
+Geburtstag: <%= @registration.birthday.strftime("%d.%m.%Y") %>
 Studiengang: <% case @registration.study 
  when 0 %> 2-Fach Bachelor
 <% when 1 %> Landschaftsökologie 
 <% when 2 %> Geographie
 <% when 3 %> Geoinformatik 
 <% end %>
-<% optional_detail(@registration.vegetarian, 'Vegetarier') 
- optional_detail(@registration.vegan, 'Veganer')
- optional_detail(@registration.comment, 'Bemerkungen') 
+<% optional_detail(@registration.vegetarian, "Vegetarier") 
+ optional_detail(@registration.vegan, "Veganer")
+ optional_detail(@registration.comment, "Bemerkungen") 
  %>
 
 Wenn du noch Fragen hast, schreib uns ruhig eine E-Mail.

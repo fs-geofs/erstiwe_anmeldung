@@ -51,10 +51,24 @@
       = f.text_field :mail_port
 
   %div{class:"row"}
+    %div{class:"large-12 columns"}
+      = f.label :registration_complete_mail, 'Bestätigungsmail (Wer keine Ahnung hat, soll die Finger davon lassen!)'
+      = f.text_area :registration_complete_mail, rows: 10, style: "height: auto;", value: AppConfig.first.registration_complete_mail.html_safe
+      = button_to_function "Text zurücksetzen", "undo_mail_changes(false)", class: "button small"
+      = button_to_function "Komplett zurücksetzen", "undo_mail_changes(true)", class: "button small"
+
+  %div{class:"row"}
     %div{class:"small-6 large-centered columns"}
       = f.submit "Speichern", class: "button expand radius success"
 
 :javascript
   $('#app_config_beginning_date').fdatepicker({format:'yyyy-mm-dd'});
   $('#app_config_ending_date').fdatepicker({format:'yyyy-mm-dd'});
+
+  function undo_mail_changes(hard) {
+    $.ajax({url: 'http://localhost:3000/app_config/reset_mail'+(hard===true ? '_hard' : '')}).done(function( data ) {
+      $('#app_config_registration_complete_mail').val(data);
+    });
+  }
+
 
