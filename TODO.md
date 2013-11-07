@@ -6,6 +6,6 @@
   * [x] Unvollständige Anmeldungen auflisten
   * [] Mails bearbeitbar machen
   * [] Mail an alle/(un)vollständigen/einzelne Anmeldung
-  * [] Domain konfigurierbar machen/im Deploy dynamisch ändern
+  * [x] Maildomain im Deploy dynamisch ändern
   * [] Logging von Ereignissen (Anmeldungen, Abmeldungen, Tickets, Emails, alles) und von wem
   * [] Aktion zum ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von warteliste, bestimmter von nicht warteliste)
