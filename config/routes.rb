@@ -1,8 +1,12 @@
 ErstiweAnmeldung::Application.routes.draw do
-  devise_for :waitings, :path => 'waiting-list'
+  devise_for :waitings, :controllers => {:confirmations => 'waitings'}, :path => 'waiting_list'
   root :to => 'landing_page#index'
-  devise_for :users, :path => ''
+  devise_for :users, :controllers => {:registrations => 'registrations'}, :path => ''
   
+  devise_scope :waiting do
+    get "waiting_list/", :to => "registrations#new"
+  end
+
   devise_scope :user do
     get "users/list", :to => "registrations#list"
     get "edit_credentials", :to => "registrations#edit_email_password"
@@ -16,6 +20,7 @@ ErstiweAnmeldung::Application.routes.draw do
   patch 'app_config' => 'app_config#update'
   get 'app_config/reset_mail' => 'app_config#registration_complete_mail'
   get 'app_config/reset_mail_hard' => 'app_config#registration_complete_mail_hard_reset'
+
 
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.
