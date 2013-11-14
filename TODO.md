@@ -1,11 +1,16 @@
 #Sachen die noch gebaut werden müssen:
   * [] Warteliste
-  * [] Warteliste öffnen/schließen
-  * [] Mail an alle wartenden senden mit neuem Ticket
+   - [] Warteliste öffnen/schließen
+   - [] Andere E-Mail-Bestätigungs-Mail
+   - [] Warteliste für admin sichtbar machen
+   - [] Mail an alle wartenden senden mit neuem Ticket
+   - [] Aktion zum Ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von Warteliste, bestimmter von nicht Warteliste)
+   - [] Wartelistenperson in Anmeldeliste markieren
+   - [] Wartelistenperson die sich auf frisches Ticket anmeldet aus Warteliste löschen
   * [x] Anmeldung bearbeiten
   * [x] Unvollständige Anmeldungen auflisten
   * [x] Anmeldung Vollständig-Mail bearbeitbar machen
   * [] Mail an alle/(un)vollständigen/einzelne Anmeldung
   * [x] Maildomain im Deploy dynamisch ändern
   * [] Logging von Ereignissen (Anmeldungen, Abmeldungen, Tickets, Emails, alles) und von wem
-  * [] Aktion zum ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von warteliste, bestimmter von nicht warteliste)
+
