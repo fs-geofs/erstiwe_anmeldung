@@ -1,7 +1,7 @@
 #Sachen die noch gebaut werden müssen:
   * [] Warteliste
    - [] Warteliste öffnen/schließen
-   - [] Andere E-Mail-Bestätigungs-Mail
+   - [x] Andere E-Mail-Bestätigungs-Mail
    - [] Warteliste für admin sichtbar machen
    - [] Mail an alle wartenden senden mit neuem Ticket
    - [] Aktion zum Ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von Warteliste, bestimmter von nicht Warteliste)
