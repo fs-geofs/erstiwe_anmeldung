@@ -80,6 +80,14 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end
 
+    def after_sign_in_path_for(resource)
+      if current_user.admin?
+        users_list_path
+      else
+        edit_user_registration_path
+      end
+    end    
+
     def after_inactive_sign_up_path_for(resource)
       new_user_session_path
     end
