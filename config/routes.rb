@@ -5,6 +5,7 @@ ErstiweAnmeldung::Application.routes.draw do
   
   devise_scope :waiting do
     get "waiting_list/", :to => "registrations#new"
+    get "waiting_list/list", :to => "registrations#list"
   end
 
   devise_scope :user do
