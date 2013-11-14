@@ -4,7 +4,7 @@ class RegistrationMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts={})
     @token = token
-    @config = AppConfig.first
+    # @config = AppConfig.first
     opts = mail_config opts
     devise_mail(record, :confirmation_instructions, opts)
   end
@@ -26,6 +26,13 @@ class RegistrationMailer < Devise::Mailer
     mail(mail_config({to: @config.mail_adress,
      subject: "Anmeldung Erstiwochenende gelöscht - neues Ticket",
      content_type: "text/plain"})).deliver
+  end
+
+  def waiting_list_confirmation_instructions(record, token, opts={})
+    @token = token
+    opts = mail_config opts
+    opts.merge!({subject: "Dein Platz auf der Warteliste - Erstiwochenende"})
+    devise_mail(record, :waiting_list_confirmation_instructions, opts)
   end
 
   private
