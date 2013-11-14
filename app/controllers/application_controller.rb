@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_sign_in_path_for(resource)
-    if current_user.admin?
-      users_list_path
-    else
-      edit_user_registration_path
-    end
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :pre_token
     devise_parameter_sanitizer.for(:account_update) << [:id, :email, :fname, :lname, :gender, :street, :streetno, :zip, :place, :birthday, :study, :vegetarian, :vegan, :phone, :comment]

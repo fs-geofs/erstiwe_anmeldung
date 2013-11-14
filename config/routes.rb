@@ -1,6 +1,7 @@
 ErstiweAnmeldung::Application.routes.draw do
+  devise_for :waitings, :path => 'waiting-list'
   root :to => 'landing_page#index'
-  devise_for :users, :controllers => {:registrations => "registrations"}, :path => ''
+  devise_for :users, :path => ''
   
   devise_scope :user do
     get "users/list", :to => "registrations#list"
