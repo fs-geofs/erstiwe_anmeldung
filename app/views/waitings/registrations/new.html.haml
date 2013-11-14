@@ -9,22 +9,10 @@
       = f.label :email
       = f.email_field :email, class: error_class_for_resource(:email)
       - resource_errors(:email)
-      
-  %div{class:"row"}
-    %div{class:"large-12 columns"}
-      = f.label :password
-      = f.password_field :password, class: error_class_for_resource(:password)
-      - resource_errors(:password)
-
-  %div{class:"row"}
-    %div{class:"large-12 columns"}
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, class: error_class_for_resource(:password_confirmation)
-      - resource_errors(:password_confirmation)      
+          
 
   %div{class:"row"}
     %div{class:"small-6 large-centered columns"}
       = f.submit "Ticket einlösen", class: "button expand radius success"
 
 
-= render "devise/shared/links"
