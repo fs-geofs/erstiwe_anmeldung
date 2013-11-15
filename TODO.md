@@ -1,7 +1,7 @@
 #Sachen die noch gebaut werden müssen:
   * [] Warteliste
    - [] Admin ermöglichen die Warteliste zu bearbeiten (nur hinzufügen(mass assignment) und löschen)
-   - [] Warteliste öffnen/schließen
+   - [x] Warteliste öffnen/schließen
    - [x] Andere E-Mail-Bestätigungs-Mail
    - [x] Warteliste für admin sichtbar machen
    - [] Mail an alle wartenden senden mit neuem Ticket
