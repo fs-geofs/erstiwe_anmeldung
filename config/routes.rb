@@ -6,6 +6,7 @@ ErstiweAnmeldung::Application.routes.draw do
   devise_scope :waiting do
     get "waiting_list/", :to => "registrations#new"
     get "waiting_list/list", :to => "registrations#list"
+    get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
   end
 
   devise_scope :user do
