@@ -31,6 +31,8 @@ namespace :deploy do
     end
   end
 
+  after :migrate, :seed
+
   after :finished, :chown_apps_dir_to_apps
   after :chown_apps_dir_to_apps, 'deploy:restart'
 
