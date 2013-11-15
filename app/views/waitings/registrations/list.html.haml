@@ -1,1 +1,25 @@
-= resource_class.all
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Warteliste
+
+%div{class:"row"}
+  %div{class:"large-6 columns"}
+    %table
+      %thead
+        %tr
+          %th Aktion
+          %th Nr.
+          %th E-Mail
+      %tbody  
+        - i = 0
+        - resource_class.all.each do |waiting_user|
+          %tr
+            %td
+              = link_to "×", registration_path(waiting_user, :user => waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
+            %td
+              = i+=1
+            %td
+              = waiting_user.email
+  %div{class:"large-6 columns"}
+    %label Hier kann man spaeter Leute zur Warteliste hinzufuegen
+    %textarea

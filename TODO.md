@@ -3,7 +3,7 @@
    - [] Admin ermöglichen die Warteliste zu bearbeiten (nur hinzufügen(mass assignment) und löschen)
    - [] Warteliste öffnen/schließen
    - [x] Andere E-Mail-Bestätigungs-Mail
-   - [] Warteliste für admin sichtbar machen
+   - [x] Warteliste für admin sichtbar machen
    - [] Mail an alle wartenden senden mit neuem Ticket
    - [] Aktion zum Ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von Warteliste, bestimmter von nicht Warteliste)
    - [] Wartelistenperson in Anmeldeliste markieren
