@@ -21,6 +21,7 @@ ErstiweAnmeldung::Application.routes.draw do
   patch 'app_config' => 'app_config#update'
   get 'app_config/reset_mail' => 'app_config#registration_complete_mail'
   get 'app_config/reset_mail_hard' => 'app_config#registration_complete_mail_hard_reset'
+  post 'app_config/toggle_waiting_list' => 'app_config#toggle_waiting_list'
 
 
   #get "registrations/new"

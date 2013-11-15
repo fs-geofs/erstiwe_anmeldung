@@ -12,6 +12,8 @@ class CreateAppConfigs < ActiveRecord::Migration
 
       t.text :registration_complete_mail, :null => false, :default => "ErstiwochenendeMail nicht konfiguriert. Bitte weiterleiten an fsgi@wwu.de"
 
+      t.boolean :waiting_list_open, :default => false
+
       t.timestamps
     end
   end

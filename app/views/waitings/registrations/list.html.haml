@@ -4,22 +4,27 @@
 
 %div{class:"row"}
   %div{class:"large-6 columns"}
-    %table
-      %thead
-        %tr
-          %th Aktion
-          %th Nr.
-          %th E-Mail
-      %tbody  
-        - i = 0
-        - resource_class.all.each do |waiting_user|
+    - if resource_class.count > 0
+      %table
+        %thead
           %tr
-            %td
-              = link_to "×", registration_path(waiting_user, :user => waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
-            %td
-              = i+=1
-            %td
-              = waiting_user.email
+            %th Aktion
+            %th Nr.
+            %th E-Mail
+        %tbody  
+          - i = 0
+          - resource_class.all.each do |waiting_user|
+            %tr
+              %td
+                = link_to "×", registration_path(waiting_user, :user => waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
+              %td
+                = i+=1
+              %td
+                = waiting_user.email
+    - else
+      %p Niemand auf der Warteliste
+
   %div{class:"large-6 columns"}
+    %h4 Warteliste: #{(AppConfig.first.waiting_list_open == true ? "Geöffnet" : 'Geschlossen')} (#{(link_to (AppConfig.first.waiting_list_open == true ? "schliessen" : 'öffnen'), app_config_toggle_waiting_list_path, :method => :post).html_safe})
     %label Hier kann man spaeter Leute zur Warteliste hinzufuegen
     %textarea
