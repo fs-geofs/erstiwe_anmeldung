@@ -27,6 +27,13 @@ class AppConfigController < ApplicationController
     end
   end
 
+  def toggle_waiting_list
+    @config = AppConfig.first
+    @config.waiting_list_open = !@config.waiting_list_open
+    @config.save
+    redirect_to request.env['HTTP_REFERER']
+  end
+
   def registration_complete_mail
     render :text => AppConfig.first.registration_complete_mail
   end
@@ -37,6 +44,6 @@ class AppConfigController < ApplicationController
 
   private
   def config_params
-    params.require(:app_config).permit(:beginning_date, :beginning_hour, :beginning_min, :ending_date, :ending_hour, :ending_min, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth, :registration_complete_mail)
+    params.require(:app_config).permit(:beginning_date, :beginning_hour, :beginning_min, :ending_date, :ending_hour, :ending_min, :mail_adress, :mail_server, :mail_user, :mail_password, :mail_port, :mail_auth, :registration_complete_mail, :waiting_list_open)
   end
 end

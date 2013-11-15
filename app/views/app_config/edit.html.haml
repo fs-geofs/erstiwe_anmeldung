@@ -7,6 +7,11 @@
 
   %div{class:"row"}
     %div{class:"large-12 columns"}
+      = f.label :mail_port, 'Warteliste offen'
+      = f.check_box :waiting_list_open
+
+  %div{class:"row"}
+    %div{class:"large-12 columns"}
       = f.label :beginning, 'Beginn des Erstiwochenendes (mit Abfahrt)'
     %div{class:"small-6 columns"}
       = f.text_field :beginning_date
