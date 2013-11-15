@@ -77,7 +77,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
     def admin!
-      binding.pry
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end  
 
