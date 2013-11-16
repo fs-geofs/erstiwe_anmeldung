@@ -28,7 +28,7 @@
   "nginx": {
     "version": "1.5.6",
     "passenger": {
-      "version": "4.0.21"
+      "version": "4.0.24"
     }
   },
   "nodejs": {
