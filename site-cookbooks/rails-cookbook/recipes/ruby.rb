@@ -10,6 +10,7 @@ rbenv_gem "bundler" do
 end
 rbenv_gem "passenger" do
   ruby_version node["ruby"]["version"]
+  version node["nginx"]["passenger"]["version"]
 end
 # install pg gem
 rbenv_gem "pg" do
