@@ -1,9 +1,16 @@
 class WaitingsRegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update#, :destroy#, :list
-  ]
+  #prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list
+  #]
   before_filter :admin!, :only => [:list, :destroy]
 
+  def mass_add
+    binding.pry
+    params[:addresses].lines.each do |address|
+      Waiting.create(email: address)
+    end
+    redirect_to waiting_list_list_path
+  end
 
   def list
   end

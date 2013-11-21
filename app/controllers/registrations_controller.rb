@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list
-  ]
+  prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
+  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list]
   before_filter :admin!, :only => :list
 
   def update

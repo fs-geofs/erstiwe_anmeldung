@@ -26,5 +26,7 @@
       %p Niemand auf der Warteliste
 
   %div{class:"large-6 columns"}
-    %label Hier kann man spaeter Leute zur Warteliste hinzufuegen
-    %textarea
+    %label Mehrere Adressen zur Warteliste hinzufügen. Jede Zeile nur eine Adresse! Adressen müssen trotzdem bestätigt werden.
+    = form_tag(waiting_list_mass_add_path) do
+      = text_area_tag 'addresses'
+      = submit_tag 'Eintragen', class: "button small radius"

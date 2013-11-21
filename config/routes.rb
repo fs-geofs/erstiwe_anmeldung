@@ -7,6 +7,7 @@ ErstiweAnmeldung::Application.routes.draw do
     get "waiting_list/", :to => "waitings_registrations#new"
     get "waiting_list/list", :to => "waitings_registrations#list"
     get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
+    post "waiting_list/mass_add", :to => "waitings_registrations#mass_add"
   end
 
   devise_scope :user do
