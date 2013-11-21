@@ -1,11 +1,11 @@
 ErstiweAnmeldung::Application.routes.draw do
-  devise_for :waitings, :controllers => {:confirmations => 'waitings'}, :path => 'waiting_list'
+  devise_for :waitings, :controllers => {:registrations => 'waitings_registrations', :confirmations => 'waitings'}, :path => 'waiting_list'
   root :to => 'landing_page#index'
   devise_for :users, :controllers => {:registrations => 'registrations'}, :path => ''
   
   devise_scope :waiting do
-    get "waiting_list/", :to => "registrations#new"
-    get "waiting_list/list", :to => "registrations#list"
+    get "waiting_list/", :to => "waitings_registrations#new"
+    get "waiting_list/list", :to => "waitings_registrations#list"
     get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
   end
 

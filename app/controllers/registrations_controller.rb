@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy#, :list
+  prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list
   ]
   before_filter :admin!, :only => :list
 
@@ -59,20 +59,21 @@ class RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    if current_user.admin?
-      @user = User.find(params[:user])
-      regenerate_token_for @user
-      RegistrationMailer.registration_destroyed_mail @user
-      @user.destroy
-      redirect_to users_list_path
-    else
-      regenerate_token_for resource
-      RegistrationMailer.registration_destroyed_mail @user
-      resource.destroy
-      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-      set_flash_message :notice, :destroyed if is_navigational_format?
-      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
-    end
+    binding.pry
+    # if current_user.admin?
+    #   @user = User.find(params[:user])
+    #   regenerate_token_for @user
+    #   RegistrationMailer.registration_destroyed_mail @user
+    #   @user.destroy
+    #   redirect_to users_list_path
+    # else
+    #   regenerate_token_for resource
+    #   RegistrationMailer.registration_destroyed_mail @user
+    #   resource.destroy
+    #   Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    #   set_flash_message :notice, :destroyed if is_navigational_format?
+    #   respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    # end
   end
 
   private
