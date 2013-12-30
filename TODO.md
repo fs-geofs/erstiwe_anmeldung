@@ -1,5 +1,5 @@
 #Sachen die noch gebaut werden müssen:
-  * [] Rails 4.0.2
+  * [x] Rails 4.0.2
   * [] Warteliste
    - [x] Admin ermöglichen die Warteliste zu bearbeiten (nur hinzufügen(mass assignment) und löschen)
    - [x] Warteliste öffnen/schließen
