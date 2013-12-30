@@ -5,7 +5,6 @@ class WaitingsRegistrationsController < Devise::RegistrationsController
   before_filter :admin!, :only => [:list, :destroy]
 
   def mass_add
-    binding.pry
     params[:addresses].lines.each do |address|
       Waiting.create(email: address)
     end
