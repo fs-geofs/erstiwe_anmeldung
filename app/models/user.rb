@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   before_validation :map_ticket
 
   validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?, unless: :admin
-  validates :ticket_id, presence: true, uniqueness: true, unless: :admin
+  validates :ticket_id, presence: true, uniqueness: true, unless: :admin, unless: :withdrawn
 
 
   def map_ticket
@@ -21,4 +21,4 @@ class User < ActiveRecord::Base
   def details_present?
     self.fname.present? and self.lname.present? and self.streetno.present? and self.street.present? and self.zip.present? and self.place.present? and self.birthday.present? and self.ticket_id.present? and self.study.present?
   end
-end   
+end

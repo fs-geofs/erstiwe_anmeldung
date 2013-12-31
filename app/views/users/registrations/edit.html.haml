@@ -140,10 +140,13 @@
       %br
       Dein Ticket verliert seine Gültigkeit.
     %div{class:"row"}
-      %div{class:"small-6 columns text-center"}
-        %button{class:"button radius small success", onclick:"$('a.close-reveal-modal').trigger('click');"} Abbrechen
-      %div{class:"small-6 columns text-center"}
-      = button_to "Anmeldung löschen", registration_path(resource_name), :method => :delete, class: "button radius small alert"
+      %div{class:"small-12 columns text-center"}
+        %button{class:"button radius small success", onclick:"$('a.close-reveal-modal').trigger('click');"} Abbrechen! Ich hab mich verklickt!
+      %div{class:"small-12 columns text-center"}
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :delete, class:"custom" }) do |f|
+          = f.label :withdraw_comment, "Bitte schreib kurz warum du nicht mitfahren kannst:"
+          = f.text_area :withdraw_comment
+          = f.submit "Anmeldung löschen", class: "button radius small alert"
     %a{class:"close-reveal-modal"} &#215;
 
 :javascript

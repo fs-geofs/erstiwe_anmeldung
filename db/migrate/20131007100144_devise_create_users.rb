@@ -45,7 +45,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :vegan
       t.string :phone
       t.text :comment
+
       t.boolean :admin, :default => false
+
+      t.boolean :withdrawn, :default => false
+      t.datetime :withdrawn_at
+      t.text :withdraw_comment
+
+      t.boolean :from_waiting_list, :default => false
 
       t.timestamps
     end

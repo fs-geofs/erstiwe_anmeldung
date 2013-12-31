@@ -27,7 +27,14 @@
       - if user.details_present? and !user.admin?
         %tr
           %td
-            = link_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            %a{id: "withdraw_link#{user.id}", onclick: "$(\"span#withdraw#{user.id}\").show();$(this).hide();"} × 
+            -# link_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            %span{id: "withdraw#{user.id}", style:'display:none'}
+              = form_for(user, :url => registration_path(user), :html => {:method => :delete }) do |f|
+                = f.hidden_field :id, value: user.id
+                = f.text_field :withdraw_comment
+                = f.submit "×"    
+                %a{onclick: "$(\"a#withdraw_link#{user.id}\").show();$(\"span#withdraw#{user.id}\").hide();"} Abbrechen
             = link_to "✎", edit_user_path(user),  :method => :get
           %td
             = i+=1
@@ -77,7 +84,7 @@
                 = button_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
                 = button_to "✎", edit_user_path(user),  :method => :get
               %td
-                = user.ticket.token
+                = user.ticket.tokenparams[:user][:withdraw_comment]
               %td
                 = user.email
                 = '(unbestätigt)' if !user.confirmed?

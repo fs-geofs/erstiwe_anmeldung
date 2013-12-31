@@ -59,20 +59,20 @@ class RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   def destroy
     binding.pry
-    # if current_user.admin?
-    #   @user = User.find(params[:user])
-    #   regenerate_token_for @user
-    #   RegistrationMailer.registration_destroyed_mail @user
-    #   @user.destroy
-    #   redirect_to users_list_path
-    # else
-    #   regenerate_token_for resource
-    #   RegistrationMailer.registration_destroyed_mail @user
-    #   resource.destroy
-    #   Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-    #   set_flash_message :notice, :destroyed if is_navigational_format?
-    #   respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
-    # end
+    if current_user.admin?
+      @user = User.find(params[:user][:id])
+      @user.withdraw_comment = params[:user][:withdraw_comment]
+      user_withdraw @user
+      Ticket.create
+      redirect_to users_list_path
+    else
+      resource.withdraw_comment = params[:user][:withdraw_comment]
+      user_withdraw resource
+      Ticket.create
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      set_flash_message :notice, :destroyed if is_navigational_format?
+      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    end
   end
 
   private
@@ -84,10 +84,8 @@ class RegistrationsController < Devise::RegistrationsController
       new_user_session_path
     end
 
-    def regenerate_token_for user
-      t = user.ticket
-      t.generate_token
-      t.save
+    def user_withdraw user
+      user.update(withdrawn: true, withdrawn_at: Time.now)
     end
 
     def needs_password?(user, params)

@@ -12,7 +12,10 @@
         %span{class:("taken" if taken)}
           #{ticket.token} -
           - if taken
-            bereits eingelöst
+            - if taken.withdrawn
+              Teilnehmer zurückgetreten
+            - else
+              bereits eingelöst
           - else
             Einlösen auf
             %br 

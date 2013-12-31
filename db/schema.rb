@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20131114121246) do
     t.integer  "mail_port",                  default: 25,                                                                          null: false
     t.boolean  "mail_auth",                  default: false,                                                                       null: false
     t.text     "registration_complete_mail", default: "ErstiwochenendeMail nicht konfiguriert. Bitte weiterleiten an fsgi@wwu.de", null: false
-    t.boolean  "waiting_list_open",          default: false,                                                                       null: false
+    t.boolean  "waiting_list_open",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20131114121246) do
 
   create_table "users", force: true do |t|
     t.integer  "ticket_id"
-    t.string   "email",                   default: "",    null: false
-    t.string   "encrypted_password",      default: "",    null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -60,10 +60,11 @@ ActiveRecord::Schema.define(version: 20131114121246) do
     t.boolean  "vegan"
     t.string   "phone"
     t.text     "comment"
-    t.boolean  "admin",                   default: false
-    t.boolean  "participation_withdrawn", default: false
-    t.integer  "replacement_ticket"
-    t.boolean  "waiting",                 default: false
+    t.boolean  "admin",                  default: false
+    t.boolean  "withdrawn",              default: false
+    t.datetime "withdrawn_at"
+    t.text     "withdraw_comment"
+    t.boolean  "from_waiting_list",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
