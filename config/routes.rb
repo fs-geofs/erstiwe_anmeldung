@@ -14,6 +14,7 @@ ErstiweAnmeldung::Application.routes.draw do
     get "users/list", :to => "registrations#list"
     get "edit_credentials", :to => "registrations#edit_email_password"
     get "users/:id/edit", :to => "registrations#edit", as: :edit_user
+    delete "users/:id/erase", :to => "registrations#erase", as: :erase_user
   end
 
   get 'tickets/print'

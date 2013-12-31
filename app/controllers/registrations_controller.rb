@@ -58,7 +58,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    binding.pry
     if current_user.admin?
       @user = User.find(params[:user][:id])
       @user.withdraw_comment = params[:user][:withdraw_comment]
@@ -75,10 +74,24 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def erase
+    binding.pry
+    @user = User.find(params[:id])
+    regenerate_token_for @user
+    @user.destroy
+    redirect_to users_list_path
+  end
+
   private
     def admin!
       redirect_to new_user_session_path unless current_user && current_user.admin?
-    end  
+    end
+
+    def regenerate_token_for user
+      t = user.ticket
+      t.generate_token
+      t.save
+    end
 
     def after_inactive_sign_up_path_for(resource)
       new_user_session_path
