@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
   def details_present?
     self.fname.present? and self.lname.present? and self.streetno.present? and self.street.present? and self.zip.present? and self.place.present? and self.birthday.present? and self.ticket_id.present? and self.study.present?
   end
+
+  def active_for_authentication?
+    super && !withdrawn
+  end
+
 end
