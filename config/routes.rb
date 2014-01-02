@@ -1,20 +1,22 @@
 ErstiweAnmeldung::Application.routes.draw do
+devise_for :users, :controllers => {:registrations => 'registrations'}, :path => ''
   devise_for :waitings, :controllers => {:registrations => 'waitings_registrations', :confirmations => 'waitings'}, :path => 'waiting_list'
   root :to => 'landing_page#index'
-  devise_for :users, :controllers => {:registrations => 'registrations'}, :path => ''
-  
-  devise_scope :waiting do
-    get "waiting_list/", :to => "waitings_registrations#new"
-    get "waiting_list/list", :to => "waitings_registrations#list"
-    get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
-    post "waiting_list/mass_add", :to => "waitings_registrations#mass_add"
-  end
 
   devise_scope :user do
     get "users/list", :to => "registrations#list"
     get "edit_credentials", :to => "registrations#edit_email_password"
     get "users/:id/edit", :to => "registrations#edit", as: :edit_user
     delete "users/:id/erase", :to => "registrations#erase", as: :erase_user
+    delete "waiting_list/:id/", :to => "waitings_registrations#destroy", as: :destroy_waiting
+  end
+
+  devise_scope :waiting do
+    get "waiting_list/", :to => "waitings_registrations#new"
+    get "waiting_list/list", :to => "waitings_registrations#list"
+    get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
+    post "waiting_list/mass_add", :to => "waitings_registrations#mass_add"
+    
   end
 
   get 'tickets/print'

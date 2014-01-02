@@ -17,7 +17,8 @@
             - if waiting_user.confirmed?
               %tr
                 %td
-                  = link_to "×", registration_path(waiting_user, :waiting_user => waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
+                  = link_to "×", destroy_waiting_path(waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
+                  = link_to "✉" 
                 %td
                   = i+=1
                 %td

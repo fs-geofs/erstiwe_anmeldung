@@ -1,7 +1,6 @@
 class WaitingsRegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
-  #prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list
-  #]
+  # prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list]
   before_filter :admin!, :only => [:list, :destroy]
 
   def mass_add
@@ -16,7 +15,7 @@ class WaitingsRegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    @waiting = Waiting.find(params[:waiting_user])
+    @waiting = Waiting.find(params[:id])
     @waiting.destroy
     redirect_to waiting_list_list_path
   end
