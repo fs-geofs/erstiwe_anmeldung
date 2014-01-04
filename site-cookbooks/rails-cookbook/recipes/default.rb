@@ -34,4 +34,4 @@ include_recipe 'nginx::source'
 # disable default vhost and create new vhost
 include_recipe 'rails-cookbook::vhost'
 
-include_recipe 'nodejs'
+include_recipe 'nodejs::install_from_package'
