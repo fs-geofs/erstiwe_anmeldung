@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def is_from_waiting_list?
-    if Waiting.count > 0
+    if Waiting.count > 0 and (User.withdrawn.count - User.from_waiting_list.count) > 0
       if Waiting.where(email: self.email)
         self.from_waiting_list = true
         Waiting.where(email: self.email).first.destroy
