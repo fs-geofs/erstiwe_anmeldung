@@ -12,7 +12,7 @@ set :bundle_flags, "--deployment"
 set :bundle_without, "test development deploy"
 
 set :rbenv_type, :system  
-set :rbenv_ruby, '2.1.0p0'
+set :rbenv_ruby, '2.0.0-p353'
 set :rbenv_custom_path, '/opt/rbenv'
 
 # set :format, :pretty
