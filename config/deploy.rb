@@ -1,5 +1,5 @@
 set :application, 'erstiwe_anmeldung'
-set :repo_url, 'git@github.com:ubergesundheit/erstiwe_anmeldung.git'
+set :repo_url, 'git@github.com:fs-geofs/erstiwe_anmeldung.git'
 
 set :branch, 'master'
 
@@ -12,7 +12,7 @@ set :bundle_flags, "--deployment"
 set :bundle_without, "test development deploy"
 
 set :rbenv_type, :system  
-set :rbenv_ruby, '2.0.0-p247'
+set :rbenv_ruby, '2.1.0p0'
 set :rbenv_custom_path, '/opt/rbenv'
 
 # set :format, :pretty
