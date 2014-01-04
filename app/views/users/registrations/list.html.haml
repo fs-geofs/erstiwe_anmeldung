@@ -61,6 +61,8 @@
           %td{class: attention_color(user.vegan)}
             - yes_no_helper user.vegan
           %td
+            -if user.from_waiting_list
+              *von Warteliste*
             = user.comment
 
 %div{class:"row"}

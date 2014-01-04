@@ -8,7 +8,8 @@
 %div{class:"row"}
   %div{class:"large-12 columns"}
     %h3 #{replacements_count} zurückgetretene(r) Mitfahrer.
-    = button_to "Senden", waiting_mail_path, method: :post, data: { confirm: "Sicher?" } 
+    - if replacements_count > 0
+      = button_to "Wartelistenpersonen frische Tickets zusenden", waiting_mail_path, method: :post, data: { confirm: "Sicher?" } 
 %div{class:"row"}
   %div{class:"large-6 columns"}
     - if resource_class.confirmed.count > 0
