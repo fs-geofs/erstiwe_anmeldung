@@ -13,6 +13,11 @@ class WaitingsRegistrationsController < Devise::RegistrationsController
   def list
   end
 
+  def mail
+    WaitingMailer.mass_mail
+    redirect_to waiting_list_list_path
+  end
+
   # DELETE /resource
   def destroy
     @waiting = Waiting.find(params[:id])

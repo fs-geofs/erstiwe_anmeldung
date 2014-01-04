@@ -7,17 +7,19 @@
 %div{class:"row"}
   %div{class:"small-12 columns text-center"}
     %p{class:"tickets-columns"}
-      - @tickets.each do |ticket|
-        - taken = User.find_by ticket_id: ticket.id
-        %span{class:("taken" if taken)}
-          #{ticket.token} -
-          - if taken
-            - if taken.withdrawn
-              Teilnehmer zurückgetreten
-            - else
-              bereits eingelöst
-          - else
-            Einlösen auf
-            %br 
-            https://geofs.uni-muenster.de/erstiwochenende
-        %br
+      - Ticket.all.each do |ticket|
+        - if !ticket.taken?
+          #{ticket.token} - Einlösen auf
+          %br
+          https://geofs.uni-muenster.de/erstiwochenende
+          %br
+
+%div{class:"row"}
+  %div{class:"small-12 columns text-center"}
+    %h3 Eingelöste Tickets:
+    %p{class:"tickets-columns"}
+      - Ticket.taken.each do |ticket|
+        #{ticket.token}
+        - if ticket.user.withdrawn?
+          = ": Zurückgetreten"
+

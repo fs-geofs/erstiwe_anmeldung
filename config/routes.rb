@@ -16,7 +16,7 @@ devise_for :users, :controllers => {:registrations => 'registrations'}, :path =>
     get "waiting_list/list", :to => "waitings_registrations#list"
     get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
     post "waiting_list/mass_add", :to => "waitings_registrations#mass_add"
-    
+    post "waiting_list/mail", :to => "waitings_registrations#mail", as: :waiting_mail    
   end
 
   get 'tickets/print'

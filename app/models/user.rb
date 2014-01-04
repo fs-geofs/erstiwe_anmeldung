@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?, unless: :admin
   validates :ticket_id, presence: true, uniqueness: true, unless: :admin, unless: :withdrawn
 
+  scope :withdrawn, -> { where(withdrawn: true) }
+  scope :from_waiting_list, -> { where(from_waiting_list: true) }
 
   def map_ticket
     if self.admin == false
