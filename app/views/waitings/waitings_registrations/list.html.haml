@@ -1,0 +1,41 @@
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h2 Vorsicht! Diese Seite erst benutzen, wenn alle 70 Tickets eingelöst worden sind! Sonst kann es passieren, dass ein Ticket an mehrere Personen verteilt wird!
+    %h2 Warteliste: #{(AppConfig.first.waiting_list_open == true ? "Geöffnet" : 'Geschlossen')} (#{(link_to (AppConfig.first.waiting_list_open == true ? "schliessen" : 'öffnen'), app_config_toggle_waiting_list_path, :method => :post).html_safe})
+
+- replacements_count = User.withdrawn.count - User.from_waiting_list.count
+
+%div{class:"row"}
+  %div{class:"large-12 columns"}
+    %h3 #{replacements_count} zurückgetretene(r) Mitfahrer.
+    - if replacements_count > 0
+      = button_to "Wartelistenpersonen frische Tickets zusenden", waiting_mail_path, method: :post, data: { confirm: "Sicher?" } 
+%div{class:"row"}
+  %div{class:"large-6 columns"}
+    - if resource_class.confirmed.count > 0
+      %h3 Wartelistenplätze
+      %table
+        %thead
+          %tr
+            %th Aktion
+            %th Nr.
+            %th E-Mail
+        %tbody  
+          - i = 0
+          - resource_class.all.each do |waiting_user|
+            - if waiting_user.confirmed?
+              %tr
+                %td
+                  = link_to "×", destroy_waiting_path(waiting_user), :data => { :confirm => "Sicher?" }, :method => :delete
+                %td
+                  = i+=1
+                %td
+                  = waiting_user.email
+    - else
+      %p Niemand auf der Warteliste (#{resource_class.unconfirmed.count} unbestätigt)
+
+  %div{class:"large-6 columns"}
+    %label Funktioniert nur wenn Warteliste offen! Mehrere Adressen zur Warteliste hinzufügen. Jede Zeile nur eine Adresse! Adressen müssen trotzdem bestätigt werden.
+    = form_tag(waiting_list_mass_add_path) do
+      = text_area_tag 'addresses'
+      = submit_tag 'Eintragen', class: "button small radius"

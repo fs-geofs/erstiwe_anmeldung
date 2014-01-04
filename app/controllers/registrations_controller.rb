@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
+  prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
   prepend_before_filter :authenticate_scope!, :only => [:edit, :edit_email_password, :update, :destroy, :list]
   before_filter :admin!, :only => :list
 
@@ -54,25 +54,32 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def list
-    @users = User.all
   end
 
   # DELETE /resource
   def destroy
     if current_user.admin?
-      @user = User.find(params[:user])
-      regenerate_token_for @user
-      RegistrationMailer.registration_destroyed_mail @user
-      @user.destroy
+      @user = User.find(params[:user][:id])
+      @user.withdraw_comment = params[:user][:withdraw_comment]
+      user_withdraw @user
+      Ticket.create
       redirect_to users_list_path
     else
-      regenerate_token_for resource
-      RegistrationMailer.registration_destroyed_mail @user
-      resource.destroy
+      resource.withdraw_comment = params[:user][:withdraw_comment]
+      user_withdraw resource
+      Ticket.create
       Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
       set_flash_message :notice, :destroyed if is_navigational_format?
       respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
     end
+  end
+
+  def erase
+    binding.pry
+    @user = User.find(params[:id])
+    regenerate_token_for @user
+    @user.destroy
+    redirect_to users_list_path
   end
 
   private
@@ -80,14 +87,18 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path unless current_user && current_user.admin?
     end
 
-    def after_inactive_sign_up_path_for(resource)
-      new_user_session_path
-    end
-
     def regenerate_token_for user
       t = user.ticket
       t.generate_token
       t.save
+    end
+
+    def after_inactive_sign_up_path_for(resource)
+      new_user_session_path
+    end
+
+    def user_withdraw user
+      user.update(withdrawn: true, withdrawn_at: Time.now)
     end
 
     def needs_password?(user, params)

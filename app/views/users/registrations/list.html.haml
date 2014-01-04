@@ -23,11 +23,17 @@
       %th Bemerkungen
   %tbody
     - i = 0
-    - @users.each do |user|
-      - if user.details_present? and !user.admin?
+    - resource_class.all.each do |user|
+      - if user.details_present? and !user.admin? and !user.withdrawn
         %tr
           %td
-            = link_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
+            %a{id: "withdraw_link#{user.id}", onclick: "$(\"span#withdraw#{user.id}\").show();$(this).hide();"} × 
+            %span{id: "withdraw#{user.id}", style:'display:none'}
+              = form_for(user, :url => registration_path(user), :html => {:method => :delete }) do |f|
+                = f.hidden_field :id, value: user.id
+                = f.text_field :withdraw_comment
+                = f.submit "×"    
+                %a{onclick: "$(\"a#withdraw_link#{user.id}\").show();$(\"span#withdraw#{user.id}\").hide();"} Abbrechen
             = link_to "✎", edit_user_path(user),  :method => :get
           %td
             = i+=1
@@ -55,6 +61,8 @@
           %td{class: attention_color(user.vegan)}
             - yes_no_helper user.vegan
           %td
+            -if user.from_waiting_list
+              *von Warteliste*
             = user.comment
 
 %div{class:"row"}
@@ -70,14 +78,38 @@
           %th Ticket-Code
           %th E-Mail
       %tbody
-        - @users.each do |user|
+        - resource_class.all.each do |user|
           - if !user.details_present? and !user.admin?
             %tr
               %td
-                = button_to "×", registration_path(user, :user => user), :data => { :confirm => "Sicher?" }, :method => :delete
-                = button_to "✎", edit_user_path(user),  :method => :get
+                = link_to "×", erase_user_path(user), :data => { :confirm => "Sicher?" }, :method => :delete
+                = link_to "✎", edit_user_path(user),  :method => :get
               %td
                 = user.ticket.token
               %td
                 = user.email
                 = '(unbestätigt)' if !user.confirmed?
+
+
+%div{class:"row"}
+  %div{class:"small-9 large-centered columns"}
+    %h3 Abgemeldete Anmeldungen
+
+%div{class:"row"}
+  %div{class:"small-9 columns"}
+    %table{style:"width:100%;!important"}
+      %thead
+        %tr
+          %th Ticket-Code
+          %th Grund
+          %th E-Mail
+      %tbody
+        - resource_class.all.each do |user|
+          - if user.withdrawn and !user.admin?
+            %tr
+              %td
+                = user.ticket.token
+              %td
+                = user.withdraw_comment
+              %td
+                = user.email

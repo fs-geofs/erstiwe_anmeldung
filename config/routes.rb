@@ -1,11 +1,22 @@
 ErstiweAnmeldung::Application.routes.draw do
+devise_for :users, :controllers => {:registrations => 'registrations'}, :path => ''
+  devise_for :waitings, :controllers => {:registrations => 'waitings_registrations', :confirmations => 'waitings'}, :path => 'waiting_list'
   root :to => 'landing_page#index'
-  devise_for :users, :controllers => {:registrations => "registrations"}, :path => ''
-  
+
   devise_scope :user do
     get "users/list", :to => "registrations#list"
     get "edit_credentials", :to => "registrations#edit_email_password"
     get "users/:id/edit", :to => "registrations#edit", as: :edit_user
+    delete "users/:id/erase", :to => "registrations#erase", as: :erase_user
+    delete "waiting_list/:id/", :to => "waitings_registrations#destroy", as: :destroy_waiting
+  end
+
+  devise_scope :waiting do
+    get "waiting_list/", :to => "waitings_registrations#new"
+    get "waiting_list/list", :to => "waitings_registrations#list"
+    get "waiting_list/closed", :to => 'landing_page#index', as: :waitings
+    post "waiting_list/mass_add", :to => "waitings_registrations#mass_add"
+    post "waiting_list/mail", :to => "waitings_registrations#mail", as: :waiting_mail    
   end
 
   get 'tickets/print'
@@ -15,6 +26,8 @@ ErstiweAnmeldung::Application.routes.draw do
   patch 'app_config' => 'app_config#update'
   get 'app_config/reset_mail' => 'app_config#registration_complete_mail'
   get 'app_config/reset_mail_hard' => 'app_config#registration_complete_mail_hard_reset'
+  post 'app_config/toggle_waiting_list' => 'app_config#toggle_waiting_list'
+
 
   #get "registrations/new"
   # The priority is based upon order of creation: first created -> highest priority.

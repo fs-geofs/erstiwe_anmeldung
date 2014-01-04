@@ -16,7 +16,9 @@
   %div{class:"row"}
     %div{class:"large-6 columns"}
       = link_to new_user_registration_path, class:"callout_panel_a" do
-        %div{class:"panel callout radius"} Ich habe ein Ticket und möchte es einlösen!!
+        %div{class:"panel callout radius"} Ich habe ein Ticket und möchte es einlösen!
     %div{class:"large-6 columns"}
-      = link_to new_user_session_path do
-        %div{class:"panel radius"} Einloggen
+      - if AppConfig.first.waiting_list_open
+        = link_to waiting_list_path do
+          %div{class:"panel radius"} Ich möchte auf die Warteliste!
+  = link_to 'Einloggen', new_user_session_path

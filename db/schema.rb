@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010082732) do
+ActiveRecord::Schema.define(version: 20131114121246) do
 
   create_table "app_configs", force: true do |t|
     t.datetime "beginning",                                                                                                        null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20131010082732) do
     t.integer  "mail_port",                  default: 25,                                                                          null: false
     t.boolean  "mail_auth",                  default: false,                                                                       null: false
     t.text     "registration_complete_mail", default: "ErstiwochenendeMail nicht konfiguriert. Bitte weiterleiten an fsgi@wwu.de", null: false
+    t.boolean  "waiting_list_open",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,6 +61,10 @@ ActiveRecord::Schema.define(version: 20131010082732) do
     t.string   "phone"
     t.text     "comment"
     t.boolean  "admin",                  default: false
+    t.boolean  "withdrawn",              default: false
+    t.datetime "withdrawn_at"
+    t.text     "withdraw_comment"
+    t.boolean  "from_waiting_list",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,5 +72,18 @@ ActiveRecord::Schema.define(version: 20131010082732) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "waitings", force: true do |t|
+    t.string   "email",                default: "", null: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "waitings", ["confirmation_token"], name: "index_waitings_on_confirmation_token", unique: true
+  add_index "waitings", ["email"], name: "index_waitings_on_email", unique: true
 
 end

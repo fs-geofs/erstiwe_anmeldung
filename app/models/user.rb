@@ -7,10 +7,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :confirmable
 
   before_validation :map_ticket
+  before_create :is_from_waiting_list?
 
   validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?, unless: :admin
-  validates :ticket_id, presence: true, uniqueness: true, unless: :admin
+  validates :ticket_id, presence: true, uniqueness: true, unless: :admin, unless: :withdrawn
 
+  scope :withdrawn, -> { where(withdrawn: true) }
+  scope :from_waiting_list, -> { where(from_waiting_list: true) }
 
   def map_ticket
     if self.admin == false
@@ -21,4 +24,18 @@ class User < ActiveRecord::Base
   def details_present?
     self.fname.present? and self.lname.present? and self.streetno.present? and self.street.present? and self.zip.present? and self.place.present? and self.birthday.present? and self.ticket_id.present? and self.study.present?
   end
-end   
+
+  def is_from_waiting_list?
+    if Waiting.count > 0
+      if Waiting.where(email: self.email)
+        self.from_waiting_list = true
+        Waiting.where(email: self.email).first.destroy
+      end
+    end
+  end
+
+  def active_for_authentication?
+    super && !withdrawn
+  end
+
+end
