@@ -5,10 +5,10 @@
    - [x] Warteliste öffnen/schließen
    - [x] Andere E-Mail-Bestätigungs-Mail
    - [x] Warteliste für admin sichtbar machen
-   - [] Mail an alle wartenden senden mit neuem Ticket
+   - [x] Mail an alle wartenden senden mit neuem Ticket
    - [] Aktion zum Ersetzen von Teilnehmern nach verschiedenen Methoden (random an alle wartelisten, bestimmter von Warteliste, bestimmter von nicht Warteliste)
-   - [] Wartelistenperson in Anmeldeliste markieren
-   - [] Wartelistenperson die sich auf frisches Ticket anmeldet aus Warteliste löschen
+   - [x] Wartelistenperson in Anmeldeliste markieren
+   - [x] Wartelistenperson die sich auf frisches Ticket anmeldet aus Warteliste löschen
   * [x] Anmeldung bearbeiten
   * [x] Unvollständige Anmeldungen auflisten
   * [x] Anmeldung Vollständig-Mail bearbeitbar machen
