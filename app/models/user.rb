@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   before_create :is_from_waiting_list?
 
   validates :fname, :lname, :street, :streetno, :zip, :place, :birthday, :ticket_id, :study, presence: true, if: :confirmed?, unless: :admin
-  validates :ticket_id, presence: true, uniqueness: true, unless: :admin, unless: :withdrawn
+  validates :ticket_id, presence: true, uniqueness: true, unless: :admin_or_withdrawn?
 
   scope :withdrawn, -> { where(withdrawn: true) }
   scope :from_waiting_list, -> { where(from_waiting_list: true) }
@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && !withdrawn
+  end
+
+  def admin_or_withdrawn?
+    self.admin? or self.withdrawn?
   end
 
 end
