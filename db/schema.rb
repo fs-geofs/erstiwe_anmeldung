@@ -13,9 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20131114121246) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "app_configs", force: true do |t|
-    t.datetime "beginning",                                                                                                        null: false
-    t.datetime "ending",                                                                                                           null: false
+    t.datetime "beginning",                  default: '2014-07-29 17:50:54',                                                       null: false
+    t.datetime "ending",                     default: '2014-07-29 17:50:54',                                                       null: false
     t.string   "mail_adress",                default: "",                                                                          null: false
     t.string   "mail_server",                default: "",                                                                          null: false
     t.string   "mail_user",                  default: "",                                                                          null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 20131114121246) do
     t.datetime "updated_at"
   end
 
-  add_index "tickets", ["token"], name: "index_tickets_on_token", unique: true
+  add_index "tickets", ["token"], name: "index_tickets_on_token", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.integer  "ticket_id"
@@ -69,9 +72,9 @@ ActiveRecord::Schema.define(version: 20131114121246) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "waitings", force: true do |t|
     t.string   "email",                default: "", null: false
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 20131114121246) do
     t.datetime "updated_at"
   end
 
-  add_index "waitings", ["confirmation_token"], name: "index_waitings_on_confirmation_token", unique: true
-  add_index "waitings", ["email"], name: "index_waitings_on_email", unique: true
+  add_index "waitings", ["confirmation_token"], name: "index_waitings_on_confirmation_token", unique: true, using: :btree
+  add_index "waitings", ["email"], name: "index_waitings_on_email", unique: true, using: :btree
 
 end
