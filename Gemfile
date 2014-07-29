@@ -3,11 +3,11 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.8'
 
 # Use sqlite3 as the database for Active Record
 group :development do
-  gem 'sqlite3'
+#  gem 'sqlite3'
   gem 'pry'
   gem 'pry-nav'
 end
@@ -21,9 +21,9 @@ group :deploy do
   gem 'berkshelf'
 end
 
-group :production do
-  gem 'pg'
-end
+
+gem 'pg'
+
 
 gem 'devise'
 
