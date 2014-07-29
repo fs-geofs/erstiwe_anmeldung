@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
       self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     end
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-    
+
     successfully_updated = if needs_password?(resource, account_update_params)
       resource.update_with_password(account_update_params)
     else
@@ -75,7 +75,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def erase
-    binding.pry
     @user = User.find(params[:id])
     regenerate_token_for @user
     @user.destroy
