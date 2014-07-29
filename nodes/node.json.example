@@ -14,8 +14,9 @@
   },
   "postgresql": {
     "version": "9.3",
+    "enable_pgdg_apt": true,
     "db_root_password": "SECUREpasswordFORpostgresDATABASEuser",
-    "database": 
+    "database":
       {
         "username": "erstiwe_anmeldung",
         "password": "pgpass",
@@ -37,6 +38,6 @@
   },
   // don't change anything here
   "run_list": [
-    "rails-cookbook" 
+    "rails-cookbook"
   ]
 }

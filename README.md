@@ -16,7 +16,7 @@ Rails app der Fachschaft Geoinformatik Münster für die Anmeldung für das Erst
     * cd into the repo and run `bundle install --without development production`
 
   2. Provision the server and deploy the app
-    * cd into the repo and run `bundle exec berks vendor cookbooks/`
+    * cd into the repo
     * run `bundle exec knife solo prepare user@host` to prepare your server
     * modify the file `nodes/<yourhost>.json. there is an example JSON file in the same folder
     * run `bundle exec knife solo cook user@host` to install all dependencies on the server
