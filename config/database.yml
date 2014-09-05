@@ -22,8 +22,8 @@ test:
 
 production:
   adapter: postgresql
-  database: erstiwe_anmeldung_production
+  database: d9718cd83dba5e9abc5c137ba01ee1
   pool: 5
-  host: localhost
-  username: erstiwe_anmeldung
-  password: gets_automatically_changed on deploy
+#  host: localhost
+#  username: erstiwe_anmeldung
+#  password: gets_automatically_changed on deploy

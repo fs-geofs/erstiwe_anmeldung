@@ -22,7 +22,11 @@ group :deploy do
 end
 
 
+gem 'rails_12factor', group: :production
+
 gem 'pg'
+
+gem 'unicorn'
 
 
 gem 'devise'
