@@ -57,7 +57,7 @@ module RegistrationsHelper
   end
 
   def error_class_for_resource(attr)
-    "error" if resource.errors.any? && resource.errors.messages[attr].any?
+    "error" if resource.errors.any? && resource.errors.messages[attr] != nil && resource.errors.messages[attr].any?
   end
 
   def resource_errors(attr)

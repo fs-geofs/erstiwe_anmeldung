@@ -8,7 +8,7 @@
     %div{class:"large-12 columns"}
       = f.label :pre_token, 'Ticket-Code'
       = f.text_field :pre_token, autofocus: true, class: error_class_for_resource(:ticket_id)
-      - if resource.errors.any? && resource.errors.messages[:ticket_id].any?
+      - if resource.errors.any? && resource.errors.messages[:ticket_id] != nil && resource.errors.messages[:ticket_id].any?
         %span{class:"error"} Ticket-Code ungültig
 
   %div{class:"row"}
@@ -16,10 +16,10 @@
       = f.label :email
       = f.email_field :email, class: error_class_for_resource(:email)
       - resource_errors(:email)
-      
+
   %div{class:"row"}
     %div{class:"large-12 columns"}
-      = f.label :password
+      = f.label :password, "Passwort (mindestens 6 Zeichen)"
       = f.password_field :password, class: error_class_for_resource(:password)
       - resource_errors(:password)
 
@@ -27,7 +27,7 @@
     %div{class:"large-12 columns"}
       = f.label :password_confirmation
       = f.password_field :password_confirmation, class: error_class_for_resource(:password_confirmation)
-      - resource_errors(:password_confirmation)      
+      - resource_errors(:password_confirmation)
 
   %div{class:"row"}
     %div{class:"small-6 large-centered columns"}
