@@ -6,6 +6,14 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.3)
 
+GIT
+  remote: https://github.com/getsentry/raven-ruby.git
+  revision: bd026531c390a7fbc71980871a7951bc0f2d737f
+  specs:
+    sentry-raven (0.10.1)
+      faraday (>= 0.7.6)
+      uuidtools
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -366,6 +374,7 @@ DEPENDENCIES
   rails-i18n
   rails_12factor
   sass-rails (~> 4.0.0)
+  sentry-raven!
   time_splitter
   turbolinks
   uglifier (>= 1.3.0)
